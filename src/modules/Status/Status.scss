@@ -1,0 +1,68 @@
+.status{
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.status-text{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.status-buttons{
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-button{
+    width: 70px;
+}
+
+
+.yes{
+    background-color: #DDEDAA;
+}
+
+.no{
+    background-color: #BD4F6C;
+}
+
+@media screen and (max-width: 1000px){
+    .status{
+        justify-content: center;
+    }
+
+    .status-text{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .status-buttons{
+        width: 85%;
+        max-width: 320px;
+    }
+
+    .status-button{
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px){
+    .status{
+        height: 100%;
+        width: 42%;
+    }
+    
+}
+
+@media screen and (max-width: 700px){
+    .status{
+        width: 100%;
+        height: 130px;
+        justify-content: center;
+    }
+}

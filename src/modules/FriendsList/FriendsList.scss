@@ -1,0 +1,71 @@
+.friends{
+    height: 100%;
+    width: 90%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #DDEDAA;
+}
+
+.friends-content{
+    width: 70%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.main-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.friends-list{
+    margin-top: 10px;
+    width: 100%;
+    height: 210px;
+    overflow-y: scroll;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+    margin-bottom: 10px;
+}
+
+.friends-row{
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+    padding: 15px;
+    border-bottom: 1px solid black;
+    font-size: 18px;
+}
+
+.friend-remove{
+    text-decoration: underline;
+}
+
+.friends-add-new{
+    width: 160px;
+    background-color: #DDEDAA;
+}
+
+@media screen and (max-width: 1000px){
+    .friends{
+        width: 100%;
+        height: 90%;
+    }
+    .friends-list{
+        height: 240px;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .friends{
+        width: 100%;
+    }
+}
