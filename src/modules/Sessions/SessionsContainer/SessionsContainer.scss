@@ -1,6 +1,8 @@
 .sessions-container{
-    margin-top: 15px;
+    
     width: 380px;
+    height: 85%;
+    
     background-color: rgba($color: white, $alpha: 0.6);
     display: flex;
     flex-direction: column;
@@ -90,6 +92,7 @@
 @media screen and (max-width: 1000px){
 
     .sessions-container{
+        margin-top: 15px;
         width: 95%;
     }
 
@@ -123,7 +126,7 @@
     }
 
     .open{
-        height: 300px;
+        height: 283px;
         transition: height .2s ease-out;
 
         .sessions-content{
@@ -137,5 +140,16 @@
         }
 
         
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .open{
+        height: 263px;
+        .sessions-content{
+            height: 130px;
+            
+        }
+ 
     }
 }

@@ -7,7 +7,7 @@ import Profile from './modules/Profile/Profile';
 import Status from './modules/Status/Status';
 import Buttons from './modules/Buttons/Buttons'
 import Sessions from './modules/Sessions/Sessions'
-
+import Notifications from './modules/Notifications/Notifications'
 import FriendsList from './modules/FriendsList/FriendsList'
 
 
@@ -26,25 +26,6 @@ export default class App extends React.Component{
     })
   }
 
-  renderClose = () => {
-    switch (this.state.mainFrame){
-      case ("sessions"):
-        return(
-          <div className="main-close-bar">
-            
-          </div>
-        )
-      default:
-        return(
-          <div className="main-close-bar">
-            <button className="close-main-button">
-              <img className="close-image" alt=""/>
-            </button>
-          </div>
-        )
-    }
-  }
-
   renderMainFrame = () => {
     switch (this.state.mainFrame){
       case ("sessions"):
@@ -53,6 +34,8 @@ export default class App extends React.Component{
         )
       case ("friends"):
         return <FriendsList/>
+      case ("notifications"):
+        return <Notifications/>
       default:
         return(
           <Sessions/>
@@ -74,7 +57,14 @@ export default class App extends React.Component{
         </div>
 
         <div className="bottom-row">
-          {this.renderMainFrame()}
+          <div className="main-frame container">
+            <div className={`close-bar ${this.state.mainFrame === "sessions" ? `hide-bar` : `show-bar`}`}> 
+              <button className={`close-button` } onClick={() => this.buttonPress('sessions')}>
+                <img src={close} alt="" className="close-icon"/>
+              </button>
+            </div>
+            {this.renderMainFrame()}
+          </div>
         </div>
       </div>
     );

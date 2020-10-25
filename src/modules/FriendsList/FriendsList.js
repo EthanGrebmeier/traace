@@ -6,7 +6,7 @@ export default class FriendsList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            friends: [{user2: 3, name: "Kiley Brennan"}]
+            friends: []
         }
     }
 
@@ -41,7 +41,7 @@ export default class FriendsList extends React.Component {
 
     render(){
         return(
-            <div className="container friends">
+            <div className="friends">
                 <div className="friends-content">
                     <div className="main-header">
                         <h2 className="main-title"> Friends List </h2>

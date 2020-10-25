@@ -54,11 +54,47 @@ h2{
 
 .bottom-row{
     width: 96%;
-    height: 300px;
+    height: 360px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     margin-bottom: 20px;
+}
+
+.main-frame{
+    width: 94%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F0CF65;
+}
+
+.show-bar{
+    display: flex;
+}
+
+.hide-bar{
+    margin-top: 0;
+    display: none;
+}
+
+.close-bar{
+    justify-content: flex-end;
+    position: static;
+    width: 95%;
+    margin-top: 10px;
+}
+
+.close-button{
+    background-color: transparent;
+    border: none;
+}
+
+.close-icon{
+    width: 15px;
+    height: 15px;
 }
 
 .container{
@@ -101,6 +137,7 @@ h2{
         background: none;
         border: none;
     }
+    
 
     .top-row{
         justify-content: space-between;
@@ -108,6 +145,10 @@ h2{
     
     .bottom-row{
         height: 55%;
+    }
+
+    .main-frame{
+        width: 100%;
     }
 }
 

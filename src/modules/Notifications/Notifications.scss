@@ -1,4 +1,4 @@
-.friends{
+.notifications{
     height: 100%;
     width: 100%;
     display: flex;
@@ -9,13 +9,13 @@
     
 }
 
-.friends-content{
+.notifications-content{
     width: 70%;
     min-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -20px;
+    margin-top: -40px;
 }
 
 .main-header{
@@ -25,7 +25,7 @@
     
 }
 
-.friends-list{
+.notifications-list{
     margin-top: 10px;
     width: 100%;
     height: 210px;
@@ -35,7 +35,7 @@
     margin-bottom: 10px;
 }
 
-.friends-row{
+.notifications-row{
     display: flex;
     justify-content: space-between;
     height: 20px;
@@ -44,27 +44,24 @@
     font-size: 18px;
 }
 
-.friend-remove{
-    text-decoration: underline;
-}
 
-.friends-add-new{
-    width: 160px;
-    background-color: #DDEDAA;
-}
 
 @media screen and (max-width: 1000px){
-    .friends{
+    .notifications{
         width: 100%;
         height: 90%;
     }
-    .friends-list{
+    .notifications-list{
         height: 240px;
+    }
+    .notifications-content{
+        width: 80%;
     }
 }
 
 @media screen and (max-width: 700px){
-    .friends{
+    .notifications{
         width: 100%;
     }
+    
 }
