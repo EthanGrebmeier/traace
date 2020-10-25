@@ -8,6 +8,7 @@ import Status from './modules/Status/Status';
 import Buttons from './modules/Buttons/Buttons'
 import Sessions from './modules/Sessions/Sessions'
 import Notifications from './modules/Notifications/Notifications'
+import About from './modules/About/About'
 import FriendsList from './modules/FriendsList/FriendsList'
 
 
@@ -36,6 +37,8 @@ export default class App extends React.Component{
         return <FriendsList/>
       case ("notifications"):
         return <Notifications/>
+      case ("about"):
+        return <About/>
       default:
         return(
           <Sessions/>
