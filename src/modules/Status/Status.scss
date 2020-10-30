@@ -22,6 +22,29 @@
     width: 70px;
 }
 
+.status-select{
+    width: 90%;
+    height: 35px;
+    background-color: transparent;
+    border: 2px solid black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+
+}
+
+.status-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 78px;
+    .status-buttons{
+        .status-button{
+            width: 50%;
+        }
+    }
+}
 
 .yes{
     background-color: #DDEDAA;
@@ -30,15 +53,27 @@
 .no{
     background-color: #BD4F6C;
 }
-
+ 
 @media screen and (max-width: 1000px){
     .status{
+        display: flex;
         justify-content: center;
+        align-items: center;
     }
+    .status-options{
+        align-self: flex-start;
+        align-items: flex-start;
 
-    .status-text{
+        width: 100%;
+    }
+    .status-text, .status-options{
         padding-right: 20px;
         padding-left: 20px;
+    }
+    
+    .status-select{
+        width: 80%;
+        max-width: 200px;
     }
 
     .status-buttons{
@@ -48,6 +83,10 @@
 
     .status-button{
         width: 45%;
+    }
+
+    .text{
+        align-items: flex-start;
     }
 }
 
@@ -62,7 +101,23 @@
 @media screen and (max-width: 700px){
     .status{
         width: 100%;
-        height: 130px;
+        height: 160px;
         justify-content: center;
     }
+    .status-options{
+        align-self: center;
+        align-items: center;
+        height: 85px;
+
+        width: 100%;
+        .status-buttons{
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .text{
+        align-items: center;
+        text-align: center;
+    }
+    
 }

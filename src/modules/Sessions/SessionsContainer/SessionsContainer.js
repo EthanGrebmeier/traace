@@ -42,7 +42,7 @@ export default class SessionsContainer extends React.Component {
                 
                 <div className="sessions-table">
                     <div className="table-header"> 
-                        <p className="table-header-section name"> Location Name</p>
+                        <p className="table-header-section name"> {this.props.name}</p>
                         <p className="table-header-section date"> Date</p>
                     </div>
 

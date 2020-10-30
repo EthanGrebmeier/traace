@@ -57,8 +57,8 @@ export default class Sessions extends React.Component {
     render(){
         return(
             <div className="item-container sessions">
-                <SessionsContainer header="Places Visited" id="places" open={this.state.placesOpen} arrowClick = {this.openSection} sessions={this.state.placesData}/>
-                <SessionsContainer header="People Seen" id="people" open={this.state.peopleOpen} arrowClick = {this.openSection} sessions={this.state.peopleData}/>
+                <SessionsContainer header="Places Visited" id="places" open={this.state.placesOpen} arrowClick = {this.openSection} sessions={this.state.placesData} name="Location Name" />
+                <SessionsContainer header="People Seen" id="people" open={this.state.peopleOpen} arrowClick = {this.openSection} sessions={this.state.peopleData} name="Name" />
             </div>
         )
     }

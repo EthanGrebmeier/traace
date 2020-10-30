@@ -58,25 +58,26 @@ export default class Profile extends React.Component {
             <div className={`item-container container profile ${this.state.burgerClicked ? 'burger-opened' : 'burger-closed'}`}>
                 <div className="profile-content">
 
-                    <div className="profile-left-col">
-                        {this.timeOfDay()}
-                        <h1 className="profile-name">
-                            Ethan
-                        </h1>
-                        <div className="burger-buttons">
-                            <Button name="Friends" id="friends" clickFunction={this.props.buttonPress}/>
-                            <Button name="Notifications" id="notifications" clickFunction={this.props.buttonPress}/>
-                            <Button name="About" id="about" clickFunction={this.props.buttonPress}/>
-                        </div>
-                    </div>
+                    {this.timeOfDay()}
+                    <h1 className="profile-name">
+                        Ethan
+                    </h1>
 
-                    <div className="profile-right-col">
-                        <button onClick={this.toggleBurger} className="toggle-burger">
-                            <img className="menu-burger" src={menu} alt=""/>
-                        </button> 
+                    <div className="burger-buttons">
+                        <Button name="Friends" id="friends" clickFunction={this.props.buttonPress}/>
+                        <Button name="Notifications" id="notifications" clickFunction={this.props.buttonPress}/>
+                        <Button name="About" id="about" clickFunction={this.props.buttonPress}/>
                     </div>
 
                 </div>
+                <button onClick={this.toggleBurger} className={`toggle-burger ${this.state.burgerClicked ? 'toggle-burger-clicked' : ''}`}>
+                    <div className="menu-burger">
+                        <div className="burger-bar" id="burger-bar-one"></div>
+                        <div className="burger-bar" id="burger-bar-two" ></div>
+                        <div className="burger-bar" id="burger-bar-three"></div>
+                    </div>
+                    
+                </button> 
             </div>
             
     )}

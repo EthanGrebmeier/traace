@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import Axios from 'axios';
 import './App.scss';
 
 import close from './images/close.png'
@@ -17,8 +18,22 @@ export default class App extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      mainFrame: "sessions"
+      mainFrame: "sessions",
+      user: {}
     }
+  }
+
+  componentDidMount(){
+    this.getUser()
+  }
+
+  getUser = () => {
+    Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/${2}`).then((res) => {
+      console.log(res)
+      this.setState({
+        user: res["data"]["user"]
+      })
+    })
   }
 
   buttonPress = (id) => {
@@ -53,7 +68,7 @@ export default class App extends React.Component{
           
           <Profile buttonPress={this.buttonPress}/>
 
-          <Status/>
+          <Status status={this.state.user.status} userID={this.state.user.id}/>
 
           <Buttons buttonPress={this.buttonPress}/>
     
@@ -61,11 +76,9 @@ export default class App extends React.Component{
 
         <div className="bottom-row">
           <div className="main-frame container">
-            <div className={`close-bar ${this.state.mainFrame === "sessions" ? `hide-bar` : `show-bar`}`}> 
-              <button className={`close-button` } onClick={() => this.buttonPress('sessions')}>
-                <img src={close} alt="" className="close-icon"/>
-              </button>
-            </div>
+            <button className={`close-button ${this.state.mainFrame === "sessions" ? `hide-close` : `show-close`}` } onClick={() => this.buttonPress('sessions')}>
+              <img src={close} alt="" className="close-icon"/>
+            </button>
             {this.renderMainFrame()}
           </div>
         </div>
