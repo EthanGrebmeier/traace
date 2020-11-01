@@ -1,6 +1,5 @@
 import React from 'react'
 import './Profile.scss'
-import menu from '../../images/menu.png'
 import Button from '../Buttons/Button'
 
 
@@ -10,7 +9,18 @@ export default class Profile extends React.Component {
         super(props)
         this.state = {
             burgerClicked: false,
+            firstName: this.props.name.split(" ")[0],
+        }
+    }
 
+
+    getNameSize = (name) => {
+        if(name.length < 6){
+            return "profile-name-large"
+        } else if (name.length < 9) {
+            return "profile-name-medium"
+        } else {
+            return "profile-name-small"
         }
     }
 
@@ -59,8 +69,8 @@ export default class Profile extends React.Component {
                 <div className="profile-content">
 
                     {this.timeOfDay()}
-                    <h1 className="profile-name">
-                        Ethan
+                    <h1 className={this.getNameSize(this.state.firstName)}>
+                        {this.state.firstName}
                     </h1>
 
                     <div className="burger-buttons">

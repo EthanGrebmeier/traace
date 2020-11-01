@@ -70,7 +70,7 @@ export default class App extends React.Component{
         <div className="app-container">
           <div className="top-row">
             
-            <Profile buttonPress={this.buttonPress}/>
+            <Profile buttonPress={this.buttonPress} name={this.state.user["name"]}/>
   
             <Status status={this.state.user.status} userID={this.state.user.id}/>
   
@@ -91,16 +91,6 @@ export default class App extends React.Component{
     } else {
       return (
         <div className="app-container">
-          <div className="top-row">
-            
-            <Profile buttonPress={this.buttonPress}/>
-  
-            <Status status={this.state.user.status} userID={this.state.user.id}/>
-  
-            <Buttons buttonPress={this.buttonPress}/>
-      
-          </div>
-  
           <div className="bottom-row">
             <div className="main-frame container">
               <h1> LOADING... </h1>

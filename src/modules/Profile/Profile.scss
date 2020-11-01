@@ -24,9 +24,17 @@
     font-weight: bolder;
 }
 
-.profile-name{
+.profile-name-large{
     font-size: 96px;
     margin-left: -7px;
+}
+
+.profile-name-medium{
+    font-size: 64px;
+}
+
+.profile-name-small{
+    font-size: 58px;
 }
 
 .menu-burger{
@@ -164,5 +172,8 @@
     }
     .toggle-burger{
         top: 15px;
+    }
+    .profile-name-small{
+        font-size: 48px;
     }
 }
