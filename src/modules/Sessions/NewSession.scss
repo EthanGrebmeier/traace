@@ -1,0 +1,13 @@
+.new-session{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.new-session-prompt{
+    margin-top: 5px;
+    font-size: 18px;
+    border-bottom: 2px solid black;
+}

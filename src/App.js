@@ -19,7 +19,8 @@ export default class App extends React.Component{
     super(props)
     this.state = {
       mainFrame: "sessions",
-      user: {}
+      user: {},
+      loading: true,
     }
   }
 
@@ -31,7 +32,8 @@ export default class App extends React.Component{
     Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/${2}`).then((res) => {
       console.log(res)
       this.setState({
-        user: res["data"]["user"]
+        user: res["data"]["user"],
+        loading: false,
       })
     })
   }
@@ -45,8 +47,9 @@ export default class App extends React.Component{
   renderMainFrame = () => {
     switch (this.state.mainFrame){
       case ("sessions"):
+        console.log(this.state.user)
         return(
-          <Sessions/>
+          <Sessions userID={this.state.user["id"]}/>
         )
       case ("friends"):
         return <FriendsList/>
@@ -56,34 +59,57 @@ export default class App extends React.Component{
         return <About/>
       default:
         return(
-          <Sessions/>
+          <Sessions userID={this.state.user["id"]}/>
         )
     }
   }
 
   render(){
-    return (
-      <div className="app-container">
-        <div className="top-row">
-          
-          <Profile buttonPress={this.buttonPress}/>
-
-          <Status status={this.state.user.status} userID={this.state.user.id}/>
-
-          <Buttons buttonPress={this.buttonPress}/>
-    
-        </div>
-
-        <div className="bottom-row">
-          <div className="main-frame container">
-            <button className={`close-button ${this.state.mainFrame === "sessions" ? `hide-close` : `show-close`}` } onClick={() => this.buttonPress('sessions')}>
-              <img src={close} alt="" className="close-icon"/>
-            </button>
-            {this.renderMainFrame()}
+    if(!this.state.loading){
+      return (
+        <div className="app-container">
+          <div className="top-row">
+            
+            <Profile buttonPress={this.buttonPress}/>
+  
+            <Status status={this.state.user.status} userID={this.state.user.id}/>
+  
+            <Buttons buttonPress={this.buttonPress}/>
+      
+          </div>
+  
+          <div className="bottom-row">
+            <div className="main-frame container">
+              <button className={`close-button ${this.state.mainFrame === "sessions" ? `hide-close` : `show-close`}` } onClick={() => this.buttonPress('sessions')}>
+                <img src={close} alt="" className="close-icon"/>
+              </button>
+              {this.renderMainFrame()}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="app-container">
+          <div className="top-row">
+            
+            <Profile buttonPress={this.buttonPress}/>
+  
+            <Status status={this.state.user.status} userID={this.state.user.id}/>
+  
+            <Buttons buttonPress={this.buttonPress}/>
+      
+          </div>
+  
+          <div className="bottom-row">
+            <div className="main-frame container">
+              <h1> LOADING... </h1>
+            </div>
+          </div>
+        </div>
+      )
+    }
+    
   }
 }
 

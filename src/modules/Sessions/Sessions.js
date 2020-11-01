@@ -1,7 +1,7 @@
 import React from 'react'
 import './Sessions.scss'
 import axios from 'axios'
-import SessionsContainer from './SessionsContainer/SessionsContainer'
+import SessionsContainer from './SessionsContainer'
 
 
 
@@ -11,13 +11,18 @@ export default class Sessions extends React.Component {
         this.state = {
             placesOpen: true,
             peopleOpen: false,
-            placesData: ["test"],
-            peopleData: ["test23"],
+            placesData: [],
+            peopleData: [],
         }
     }
 
     componentDidMount(){
-        this.getSessions()
+        
+        if(this.props.userID){
+            console.log(this.props.userID)
+            this.getSessions()
+        }
+        
     }
 
     openSection = (event, id) => {
@@ -45,7 +50,7 @@ export default class Sessions extends React.Component {
     }
 
     getSessions = () => {
-        axios.get(`https://contact-tracing-server.herokuapp.com/api/sessions/2`).then((res) => {
+        axios.get(`https://contact-tracing-server.herokuapp.com/api/sessions/${this.props.userID}`).then((res) => {
             console.log(res)
             this.setState({
                 placesData: res["data"]["Locations"],
@@ -57,8 +62,24 @@ export default class Sessions extends React.Component {
     render(){
         return(
             <div className="item-container sessions">
-                <SessionsContainer header="Places Visited" id="places" open={this.state.placesOpen} arrowClick = {this.openSection} sessions={this.state.placesData} name="Location Name" />
-                <SessionsContainer header="People Seen" id="people" open={this.state.peopleOpen} arrowClick = {this.openSection} sessions={this.state.peopleData} name="Name" />
+                <SessionsContainer 
+                    header="Places Visited" 
+                    id="places" 
+                    open={this.state.placesOpen} 
+                    arrowClick={this.openSection} 
+                    sessions={this.state.placesData} 
+                    name="Location Name" 
+                    userID={this.props.userID}
+                />
+                <SessionsContainer 
+                    header="People Seen" 
+                    id="people" 
+                    open={this.state.peopleOpen} 
+                    arrowClick={this.openSection} 
+                    sessions={this.state.peopleData} 
+                    name="Name"
+                    userID={this.props.userID}
+                />
             </div>
         )
     }
