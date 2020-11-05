@@ -2,6 +2,8 @@ import React from 'react'
 import Axios from 'axios'
 import SelectSearch from 'react-select-search';
 
+import SnackBar from '../SnackBar/SnackBar'
+
 import leftArrow from '../../images/left-arrow.png'
 
 import './NewSession.scss'
@@ -16,6 +18,7 @@ export default class NewPeopleSession extends React.Component {
             selectedFriendIndex: 0,
             date: "",
             confirm: false,
+            snackBar: false
         }
     }
 
@@ -148,7 +151,8 @@ export default class NewPeopleSession extends React.Component {
         if(this.state.date !== ""){
             this.setState({confirm: true})
         } else {
-           
+            console.log("Snack")
+            this.setState({snackBar: true})
         }
         
         event.preventDefault()
@@ -156,6 +160,13 @@ export default class NewPeopleSession extends React.Component {
 
     handleConfirm = () => {
 
+    }
+
+    renderSnackBar = () => {
+        if(this.state.snackBar){
+            console.log("SNACKS")
+            return <SnackBar/>
+        }
     }
 
     renderFormConfirm = () => {
@@ -185,6 +196,9 @@ export default class NewPeopleSession extends React.Component {
                     <button type="submit" className="square-button accept-button">
                         Submit
                     </button>
+
+                    
+                    
                 </form>
             )
         } else {
@@ -223,6 +237,8 @@ export default class NewPeopleSession extends React.Component {
                     <img src={leftArrow} alt="" className="back-arrow" />
                     BACK
                 </button>
+
+                {this.renderSnackBar()}
             </div>
         )
     }

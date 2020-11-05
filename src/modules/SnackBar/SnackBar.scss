@@ -1,0 +1,19 @@
+.snackbar-container{
+    position: absolute;
+    min-width: 200px;
+    max-width: 350px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #F0CF65;
+    border: 2px solid black;
+    bottom: -14px;
+    z-index: 100;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    transform: translateY(-18px);
+    transition: transform 2s;
+}
