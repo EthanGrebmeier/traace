@@ -57,8 +57,8 @@ export default class Notifications extends React.Component {
                             <span className="notifications-name"> {notification.name} </span> sent you a friend request
                         </div>
                         <div className="notifications-buttons">
-                            <button className="accept"> Accept </button>
-                            <button className="decline"> Decline </button>
+                            <button className="square-button accept"> Accept </button>
+                            <button className="square-button decline"> Decline </button>
                         </div>
                     </div>
                 )
@@ -69,8 +69,8 @@ export default class Notifications extends React.Component {
                             <span className="notifications-name"> {notification.name} </span> says that they were with you on {this.getDate(notification.timestamp)}
                         </div>
                         <div className="notifications-buttons">
-                            <button className="accept"> Accept </button>
-                            <button className="decline"> Decline </button>
+                            <button className="square-button accept"> Accept </button>
+                            <button className="square-button decline"> Decline </button>
                         </div>
                     </div>
                 )

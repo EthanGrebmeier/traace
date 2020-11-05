@@ -16,11 +16,11 @@ export default class Profile extends React.Component {
 
     getNameSize = (name) => {
         if(name.length < 6){
-            return "profile-name-large"
+            return "profile-name profile-name-large"
         } else if (name.length < 9) {
-            return "profile-name-medium"
+            return "profile-name profile-name-medium"
         } else {
-            return "profile-name-small"
+            return "profile-name profile-name-small"
         }
     }
 

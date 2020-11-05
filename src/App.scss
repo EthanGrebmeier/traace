@@ -118,6 +118,17 @@ h2{
     }
 }
 
+.square-button{
+    border: 2px solid black;
+    border-radius: 4px;
+    font-weight: 600;
+    font-family: 'Montserrat-Bold';
+}
+
+.accept-button{
+    background-color: #DDEDAA;
+}
+
 .item-container{
     background-color: #F0CF65;
 
@@ -132,7 +143,7 @@ h2{
 @media screen and (max-width: 1000px){
     .app-container{
         width: 90%;
-        height: 95%;
+        height: 97%;
         background: none;
         border: none;
     }
@@ -143,7 +154,7 @@ h2{
     }
     
     .bottom-row{
-        height: 55%;
+        height: 60%;
     }
 
     .main-frame{
@@ -173,7 +184,11 @@ h2{
         flex-direction: column;
     }
     .top-row{
-        height: 55%;
+        height: 44%;
         justify-content: space-evenly;
+    }
+    .bottom-row{
+        height: 56%;
+        margin-bottom: 0;
     }
 }

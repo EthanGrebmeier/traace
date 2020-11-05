@@ -1,8 +1,8 @@
 import React from 'react'
 import './SessionsContainer.scss'
 import down from '../../images/arrow-down.png'
-import NewSession from './NewSession'
-
+import NewPeopleSession from './NewPeopleSession'
+import NewPlacesSession from './NewPlacesSession'
 
 export default class SessionsContainer extends React.Component {
     constructor(props){
@@ -10,8 +10,15 @@ export default class SessionsContainer extends React.Component {
         this.state = {
             header: this.props.header,
             type: this.props.id,
-            scene: "sessions"
+            scene: "sessions",
+            
         }
+    }
+
+    changeScene = (scene) => {
+        this.setState({
+            scene: scene
+        })
     }
 
 
@@ -28,6 +35,14 @@ export default class SessionsContainer extends React.Component {
             })
             
         )
+    }
+
+    renderNewSessionForm = () => {
+        if (this.state.header == "Places Visited"){
+            return <NewPlacesSession changeScene={this.changeScene} />
+        } else {
+            return <NewPeopleSession changeScene={this.changeScene} userID={this.props.userID} />
+        }
     }
 
     render(){
@@ -55,7 +70,7 @@ export default class SessionsContainer extends React.Component {
                         </div>
                     </div>
     
-                    <button className="round-button add-button" onClick={() => this.setState({scene: "new"})}> Add New </button>
+                    <button className="round-button add-button" onClick={() => this.changeScene("new")}> Add New </button>
                 </div>
             )
         } else {
@@ -69,7 +84,8 @@ export default class SessionsContainer extends React.Component {
                         </div>
                        
                     </button>
-                    <NewSession/>
+                    {this.renderNewSessionForm()}
+                    
                 </div>
             )
         }

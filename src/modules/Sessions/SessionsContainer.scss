@@ -21,6 +21,13 @@
     display: none;
     width: 20px;
     height: 20px;
+    transition: transform .2s ease;
+}
+
+.open{
+    .arrow-down{
+        transform: rotate(180deg);
+    }
 }
 
 .arrow-button{
@@ -92,7 +99,7 @@
 @media screen and (max-width: 1000px){
 
     .sessions-container{
-        margin-top: 15px;
+        margin-top: 10px;
         width: 95%;
     }
 
@@ -123,14 +130,17 @@
         .add-button{
             display: none;
         }
+        .new-session-form{
+            display: none;
+        }
     }
 
     .open{
-        height: 283px;
+        height: 340px;
         transition: height .2s ease-out;
 
         .sessions-content{
-            height: 150px;
+            height: 200px;
             
         }
 
@@ -143,13 +153,7 @@
     }
 }
 
-@media screen and (max-width: 1000px){
-    .open{
-        height: 263px;
-        .sessions-content{
-            height: 130px;
-            
-        }
- 
-    }
+@media screen and (max-width: 700px){
+    
 }
+

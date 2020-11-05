@@ -2,12 +2,118 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     height: 100%;
     width: 100%;
+    overflow-y: hidden;
+}
+
+.new-session-form, .new-session-prompt{
+    width: 60%;
 }
 
 .new-session-prompt{
     margin-top: 5px;
     font-size: 18px;
     border-bottom: 2px solid black;
+    text-align: center;
+}
+
+.new-session-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 90%;
+}
+
+.new-session-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.new-session-input input[type=text], .new-session-input input[type=date]{
+    border: none;
+    border-bottom: 2px solid black;
+    background-color: transparent;
+
+    font-family: 'Montserrat';
+}
+
+.new-session-preview{
+    text-align: center;
+}
+
+.accept-button{
+    height: 40px;
+    font-size: 18px;
+}
+
+.form-back-button{
+    position: absolute;
+    left: 5px;
+    bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: transparent;
+    border: none;
+    font-family: 'Montserrat-Bold';
+}
+
+.back-arrow{
+    width: 20px;
+    height: 20px;
+}
+
+.select-search{
+    position: relative;
+    
+    font-family: 'Montserrat-Bold';
+}
+
+.select-search__value input{
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+.select-search:not(.select-search--multiple) .select-search__select {
+    position: absolute;
+    z-index: 2;
+    top: 25px;
+    right: 0;
+    left: 0;
+    border-radius: 3px;
+    overflow: auto;
+    max-height: 360px;
+}
+
+.select-search__options{
+    list-style: none;
+    padding-inline-start: 0;
+    max-height: 80px;
+}
+
+.select-search__option, .select-search__not-found{
+    display: block;
+    height: 20px;
+    background-color: white;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    border: none;
+    outline: none;
+}
+
+.confirm{
+    line-height: 18px;
+}
+
+.confirm-text{
+    text-align: center;
+}
+@media screen and (max-width: 1000px){
+    
 }
