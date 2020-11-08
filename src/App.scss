@@ -169,13 +169,13 @@ button{
 @media screen and (max-width: 1000px) and (min-width: 700px){
     .app-container{
         justify-content: space-evenly;
-        height: 90%;
+        height: 100%;
     }
     .top-row{
         height: 25%;
     }
     .bottom-row{
-        height: 65%;
+        height: 60%;
     }
 }
 
@@ -188,11 +188,11 @@ button{
         flex-direction: column;
     }
     .top-row{
-        height: 44%;
+        height: 46%;
         justify-content: space-evenly;
     }
     .bottom-row{
-        height: 56%;
+        height: 54%;
         margin-bottom: 0;
     }
 }

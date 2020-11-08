@@ -31,7 +31,7 @@
     flex-direction: column;
 }
 
-.new-session-input input[type=text], .new-session-input input[type=date]{
+.new-session-input input{
     border: none;
     border-bottom: 2px solid black;
     background-color: transparent;
@@ -41,6 +41,26 @@
 
 .new-session-preview{
     text-align: center;
+}
+
+.time-row{
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-row label{
+    width: 47%;
+}
+
+.time-row input{
+    width: 100%;
+}
+
+.pac-target-input{
+    width: 99%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid black;
 }
 
 .accept-button{

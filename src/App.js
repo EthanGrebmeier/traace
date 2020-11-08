@@ -12,6 +12,8 @@ import Notifications from './modules/Notifications/Notifications'
 import About from './modules/About/About'
 import FriendsList from './modules/FriendsList/FriendsList'
 
+import SnackBar from './modules/SnackBar/SnackBar'
+
 
 export default class App extends React.Component{
 
@@ -21,6 +23,9 @@ export default class App extends React.Component{
       mainFrame: "sessions",
       user: {},
       loading: true,
+      snackBar: false,
+      snackBarMessage: "",
+      snackBarStatus: "",
     }
   }
 
@@ -49,7 +54,10 @@ export default class App extends React.Component{
       case ("sessions"):
         console.log(this.state.user)
         return(
-          <Sessions userID={this.state.user["id"]}/>
+          <Sessions 
+            userID={this.state.user["id"]}
+            setSnackBar={this.setSnackBar}
+          />
         )
       case ("friends"):
         return <FriendsList/>
@@ -62,6 +70,23 @@ export default class App extends React.Component{
           <Sessions userID={this.state.user["id"]}/>
         )
     }
+  }
+
+  setSnackBar = (message, type) => {
+    this.setState({
+        snackBar: true,
+        snackBarMessage: message,
+        snackBarType: type
+    })
+  }
+
+  renderSnackBar = () => {
+      return <SnackBar 
+              message={this.state.snackBarMessage} 
+              status={this.state.snackBarType} 
+              onClick={() => {this.setState({snackBar: false})}} 
+              in={this.state.snackBar}
+              />
   }
 
   render(){
@@ -84,6 +109,7 @@ export default class App extends React.Component{
                 <img src={close} alt="" className="close-icon"/>
               </button>
               {this.renderMainFrame()}
+              {this.renderSnackBar()}
             </div>
           </div>
         </div>

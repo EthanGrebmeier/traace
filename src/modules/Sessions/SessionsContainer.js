@@ -7,18 +7,25 @@ import NewPlacesSession from './NewPlacesSession'
 export default class SessionsContainer extends React.Component {
     constructor(props){
         super(props)
+        
         this.state = {
             header: this.props.header,
             type: this.props.id,
             scene: "sessions",
-            
         }
+
+        
     }
 
     changeScene = (scene) => {
         this.setState({
             scene: scene
         })
+    }
+
+    setDate = (timestamp) => {
+        let date = new Date(timestamp)
+        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
     }
 
 
@@ -29,7 +36,7 @@ export default class SessionsContainer extends React.Component {
                 return(
                     <div className="table-row">
                             <p className="table-header-section name ">{session["name"]}</p>
-                            <p className="table-header-section date "> 10/1/20 </p>
+                            <p className="table-header-section date "> {this.setDate(session["date"])} </p>
                     </div>
                 )
             })
@@ -38,10 +45,18 @@ export default class SessionsContainer extends React.Component {
     }
 
     renderNewSessionForm = () => {
-        if (this.state.header == "Places Visited"){
-            return <NewPlacesSession changeScene={this.changeScene} />
+        if (this.state.header === "Places Visited"){
+            return <NewPlacesSession 
+                    changeScene={this.changeScene} 
+                    userID={this.props.userID}
+                    setSnackBar={this.props.setSnackBar}
+                   />
         } else {
-            return <NewPeopleSession changeScene={this.changeScene} userID={this.props.userID} />
+            return <NewPeopleSession 
+                    changeScene={this.changeScene} 
+                    userID={this.props.userID} 
+                    setSnackBar={this.props.setSnackBar}
+                   />
         }
     }
 

@@ -18,7 +18,6 @@ export default class NewPeopleSession extends React.Component {
             selectedFriendIndex: 0,
             date: "",
             confirm: false,
-            snackBar: false
         }
     }
 
@@ -28,11 +27,11 @@ export default class NewPeopleSession extends React.Component {
             console.log(res)
             let friends = [
                 {
-                    id: 1,
+                    id: 3,
                     name: "Kiley Brennan"
                 },
                 {
-                    id: 2,
+                    id: 4,
                     name: "Kieran Mckenna"
                 },
                 {
@@ -148,25 +147,39 @@ export default class NewPeopleSession extends React.Component {
     }
 
     handleSubmit = (event) => {
-        if(this.state.date !== ""){
-            this.setState({confirm: true})
+        if(this.state.date === ""){
+            this.props.setSnackBar("Please enter a date", "warning")
+            
+        } else if (this.state.friends.length === 0){
+            this.props.setSnackBar("Please select a friend", "warning")
+        } else if(new Date(this.state.date).setHours(0) > new Date().setHours(23)) {
+            this.props.setSnackBar("Date can't be in the future", "warning")
         } else {
-            console.log("Snack")
-            this.setState({snackBar: true})
+            this.setState({confirm: true})
         }
         
         event.preventDefault()
     }
 
-    handleConfirm = () => {
-
-    }
-
-    renderSnackBar = () => {
-        if(this.state.snackBar){
-            console.log("SNACKS")
-            return <SnackBar/>
-        }
+    handleConfirm = (event) => {
+        // ADD SESSION STUFF LATER
+        console.log(this.state.friends[this.state.selectedFriendIndex]["id"])
+        Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people`, {
+            userOneID: this.props.userID,
+            userTwoID: this.state.friends[this.state.selectedFriendIndex]["id"]
+        }).then( res => {
+            console.log(res)
+            if (res.status === 200){
+                this.props.setSnackBar("Success!", "success")
+            } else {
+                this.props.setSnackBar("Something Went Wrong", "critical")
+            }
+        }).catch( (err) => {
+            console.log(err)
+            this.props.setSnackBar("Something Went Wrong", "critical")
+        } )
+        this.props.changeScene("sessions")
+        event.preventDefault()
     }
 
     renderFormConfirm = () => {
@@ -178,7 +191,7 @@ export default class NewPeopleSession extends React.Component {
                         <SelectSearch 
                             options={this.state.friendsValues} 
                             onChange={this.handleFriendSelect}
-                            value={0}
+                            value={this.state.selectedFriendIndex}
                             name="friend" 
                             search 
                             printOptions="on-focus"
@@ -188,7 +201,7 @@ export default class NewPeopleSession extends React.Component {
 
                     <label className="new-session-input">
                         Date of Visit
-                        <input type="date" onChange={this.handleDateChange}>
+                        <input type="date" onChange={this.handleDateChange} value={this.state.date}>
 
                         </input>
                     </label>
@@ -203,7 +216,7 @@ export default class NewPeopleSession extends React.Component {
             )
         } else {
             return (
-                <form className="new-session-form">
+                <form className="new-session-form" onSubmit={this.handleConfirm}>
                     <div className="confirm">
                         <p className="confirm-text">
                             {this.state.friends[this.state.selectedFriendIndex]["name"]}
@@ -237,8 +250,6 @@ export default class NewPeopleSession extends React.Component {
                     <img src={leftArrow} alt="" className="back-arrow" />
                     BACK
                 </button>
-
-                {this.renderSnackBar()}
             </div>
         )
     }

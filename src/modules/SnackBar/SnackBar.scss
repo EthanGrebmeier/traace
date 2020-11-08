@@ -7,13 +7,37 @@
     border-radius: 4px;
     background-color: #F0CF65;
     border: 2px solid black;
-    bottom: -14px;
     z-index: 100;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
 
-    transform: translateY(-18px);
-    transition: transform 2s;
+.snackbar-text{
+    text-align: center;
+}
+
+.snackbar-close{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+
+.close-img{
+    width: 10px;
+    height: 10px;
+}
+
+.critical{
+    background-color: #BD4F6C;
+}
+
+.success{
+    background-color: #DDEDAA;
+}
+
+.warning{
+    background-color: #F0CF65;
 }
