@@ -13,8 +13,6 @@ export default class SessionsContainer extends React.Component {
             type: this.props.id,
             scene: "sessions",
         }
-
-        
     }
 
     changeScene = (scene) => {
@@ -27,7 +25,6 @@ export default class SessionsContainer extends React.Component {
         let date = new Date(timestamp)
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
     }
-
 
     renderSessions = () => {
         return(

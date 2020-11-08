@@ -13,7 +13,7 @@ export default class SearchLocationInput extends React.Component {
 
   componentDidMount(){
     this.loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=AIzaSyBpP2Si-uSnvAqRYrHfN02mIgPY0qD3-p8&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.googleAPI}-p8&libraries=places`,
       () => this.handleScriptLoad((query) => {this.setState({query: query})}, this.autoCompleteRef)
     );
   }
