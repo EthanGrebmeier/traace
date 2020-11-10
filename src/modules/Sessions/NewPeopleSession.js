@@ -2,8 +2,6 @@ import React from 'react'
 import Axios from 'axios'
 import SelectSearch from 'react-select-search';
 
-import SnackBar from '../SnackBar/SnackBar'
-
 import leftArrow from '../../images/left-arrow.png'
 
 import './NewSession.scss'
@@ -95,7 +93,7 @@ export default class NewPeopleSession extends React.Component {
             }
     
             console.log(`Reccomendation: ${recommendation.name}`)
-            if (recommendation == ""){
+            if (recommendation === ""){
                 this.setState({
                     friendWholeString: event.target.value
 

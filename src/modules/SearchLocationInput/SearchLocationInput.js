@@ -6,14 +6,15 @@ export default class SearchLocationInput extends React.Component {
     super(props)
     this.autoCompleteRef = createRef();
     this.state = {
-      query: ""
+      query: "",
     }
   }
   autoComplete;
 
+
   componentDidMount(){
     this.loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${process.env.googleAPI}-p8&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.googleAPI || process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`,
       () => this.handleScriptLoad((query) => {this.setState({query: query})}, this.autoCompleteRef)
     );
   }

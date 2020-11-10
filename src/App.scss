@@ -25,6 +25,19 @@ button{
     cursor: pointer;
 }
 
+*::-webkit-scrollbar {
+    width: 5px;              
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;       
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(212, 220, 221, 0.747);   
+    border-radius: 40px;       
+  }
+
 #root{
     background-color: #93B5C6;
     display: flex;
