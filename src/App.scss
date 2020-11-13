@@ -25,6 +25,13 @@ button{
     cursor: pointer;
 }
 
+input{
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid black;
+    font-family: 'Montserrat';
+}
+
 *::-webkit-scrollbar {
     width: 5px;              
 }

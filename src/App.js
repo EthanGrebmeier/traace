@@ -60,7 +60,10 @@ export default class App extends React.Component{
           />
         )
       case ("friends"):
-        return <FriendsList/>
+        return <FriendsList 
+          userID={this.state.user["id"]} 
+          setSnackBar={this.setSnackBar}
+        />
       case ("notifications"):
         return <Notifications/>
       case ("about"):

@@ -10,7 +10,7 @@
 }
 
 .friends-content{
-    width: 70%;
+    width: 50%;
     min-width: 300px;
     display: flex;
     flex-direction: column;
@@ -45,11 +45,16 @@
 
 .friend-remove{
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .friends-add-new{
     width: 160px;
     background-color: #DDEDAA;
+}
+
+.hide-button{
+    display: none;
 }
 
 @media screen and (max-width: 1000px){
@@ -58,7 +63,7 @@
         height: 90%;
     }
     .friends-list{
-        height: 240px;
+        height: 280px;
     }
 }
 

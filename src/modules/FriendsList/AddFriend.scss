@@ -1,0 +1,38 @@
+.new-friend, .new-friend-form, .new-friend-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.new-friend{
+    height: 100%;
+    justify-content: center;
+}
+
+.new-friend-form{
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.new-friend-input{
+    justify-content: space-between;
+}
+
+.new-friend-input input{
+    height: 24px;
+}
+
+@media screen and (max-width: 1000px){
+    .form-back-button{
+        bottom: 220px;
+        left: 20px;
+    }
+}
+
+
+@media screen and (max-width: 700px){
+    .form-back-button{
+        left: 50%;
+        bottom: 10px;
+        transform: translateX(-50%);
+    }
+}
