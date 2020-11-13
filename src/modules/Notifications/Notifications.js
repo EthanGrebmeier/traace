@@ -29,7 +29,24 @@ export default class Notifications extends React.Component {
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
     }
 
+    acceptFriendRequest = () => {
+
+    }
+
+    declineFriendRequest = () => {
+
+    }
+
+    acceptSessionRequest = () => {
+
+    }
+
+    declineSessionRequest = () => {
+
+    }
+
     renderNotification = (notification) => {
+        console.log(notification)
         switch (notification.notificationType) {
             case "peopleWarning":
                 if (notification.type === "positive") {

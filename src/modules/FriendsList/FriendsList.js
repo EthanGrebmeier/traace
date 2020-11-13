@@ -11,26 +11,35 @@ export default class FriendsList extends React.Component {
         this.state = {
             friends: [], 
             scene: "friendsList",
-            prompt: "Friends List"
+            prompt: "Friends List",
+            removedFriend: {}
         }
     }
 
     componentDidMount(){
-        this.getFriends()
+        this.changeScene("friendsList")
     }
 
     changeScene = (scene) => {
         if (scene === "friendsList"){
             this.setFriendsList()
-        } else {
+        } else if (scene === "newFriend"){
             this.setNewFriend()
+        } else if (scene === "removeFriend"){
+            this.setRemoveFriend()
+        } else {
+            this.setLoading()
         }
     } 
 
     setFriendsList = () => {
-        this.setState({
-            scene: "friendsList",
-            prompt: "Friends List"
+        this.changeScene("loading")
+        this.getFriends().then((res) => {
+            this.setState({
+                friends: res["data"]["connections"],
+                scene: "friendsList",
+                prompt: "Friends List"
+            })
         })
     }
 
@@ -41,25 +50,36 @@ export default class FriendsList extends React.Component {
         })
     }
 
-    getFriends = () => {
-        Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/connections/${this.props.userID}`).then((res) => {
-            console.log(res)
-            this.setState({
-                friends: res["data"]["connections"],
-            })
+    setRemoveFriend = (friend) => {
+        this.setState({
+            scene: "removeFriend",
+            prompt: "Remove Friend",
+            removedFriend: friend
         })
     }
 
-    removeFriend = (friend) => {
-        console.log(friend)
+    setLoading = () => {
+        this.setState({
+            scene: "loading",
+            prompt: " "
+        })
+    }
+
+    getFriends = () => {
+        return Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/connections/${this.props.userID}`)
+    }
+
+    removeFriend = () => {
+        console.log(this.state.removedFriend)
+        this.setLoading()
         Axios.post('https://contact-tracing-server.herokuapp.com/api/users/connections/remove', 
         {
             userID: this.props.userID,
-            user2: friend["id"]
+            user2: this.state.removedFriend["id"]
         }
         ).then(() => {
             this.props.setSnackBar("Friend Removed", "success")
-            this.getFriends()
+            this.changeScene("friendsList")
         }) 
     }
 
@@ -71,14 +91,37 @@ export default class FriendsList extends React.Component {
                     return(
                         <div className="friends-row" key={`friend-${friend["id"]}`} id={`friend-${friend["id"]}`}>
                                 <p className="friend-name">{friend["name"]}</p>
-                                <p className="friend-remove" onClick={() => this.removeFriend(friend)}> Remove </p>
+                                <p className="friend-remove" onClick={() => this.setRemoveFriend(friend)}> Remove </p>
                         </div>
                     )
                 })
                 
             )
-        } else {
+        } else if (this.state.scene === "newFriend"){
             return <AddFriend changeScene={this.changeScene} />
+        } else if (this.state.scene === "removeFriend"){
+            return (
+            <div className="remove-confirm">
+                <h1> Would you like to remove <span className="underlined"> {this.state.removedFriend["name"]}</span> from your friends list? </h1>
+                <div className="remove-confirm-buttons">
+                    <button className="square-button yes" onClick={() => this.removeFriend()}> 
+                        Confirm
+                    </button>
+                    <button className="square-button no" onClick={this.setFriendsList}>
+                        Decline
+                    </button>
+                </div>
+                
+            </div>
+            )
+        } else {
+            return (
+                <div className="loading">
+                    <h1>
+                        Loading Friends...
+                    </h1>
+                </div>
+            )
         }
         
     }
