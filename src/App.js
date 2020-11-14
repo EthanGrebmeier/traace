@@ -65,7 +65,10 @@ export default class App extends React.Component{
           setSnackBar={this.setSnackBar}
         />
       case ("notifications"):
-        return <Notifications/>
+        return <Notifications 
+          userID={this.state.user.id}
+          setSnackBar={this.setSnackBar}
+        />
       case ("about"):
         return <About/>
       default:

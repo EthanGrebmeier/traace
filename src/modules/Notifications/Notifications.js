@@ -1,12 +1,14 @@
 import React from 'react'
 import './Notifications.scss'
 import axios from 'axios'
+import Axios from 'axios'
 
 export default class Notifications extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            notifications: []
+            notifications: [],
+            scene: "loading"
         }
     }
 
@@ -16,10 +18,14 @@ export default class Notifications extends React.Component {
 
 
     getNotifications = () => {
-        axios.get(`https://contact-tracing-server.herokuapp.com/api/users/notifications/2`).then((res) => {
+        this.setState({
+            scene: "loading"
+        })
+        axios.get(`https://contact-tracing-server.herokuapp.com/api/users/notifications/${this.props.userID}`).then((res) => {
             console.log(res)
             this.setState({
                 notifications: res["data"]["notifications"],
+                scene: "notifications"
             })
         })
     }
@@ -29,20 +35,46 @@ export default class Notifications extends React.Component {
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
     }
 
-    acceptFriendRequest = () => {
-
+    acceptFriendRequest = (notification) => {
+        Axios.post(`https://contact-tracing-server.herokuapp.com/api/users/connections`, {
+            userOneID: this.props.userID,
+            userTwoID: notification["user1"]
+        }).then(()=> {
+            let first = notification["name"].split(" ")[0]
+            this.props.setSnackBar(`${first} is now your friend`, "success")
+            this.getNotifications()
+        })
     }
 
-    declineFriendRequest = () => {
-
+    declineFriendRequest = (notification) => {
+        Axios.post(`https://contact-tracing-server.herokuapp.com/api/users/connections/decline`, {
+            userOneID: this.props.userID,
+            userTwoID: notification["user1"]
+        }).then(()=> {
+            this.props.setSnackBar(`Friend request declined`, "critical")
+            this.getNotifications()
+        })
     }
 
-    acceptSessionRequest = () => {
-
+    acceptSessionRequest = (notification) => {
+        console.log(notification)
+        Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people/accept`, {
+            userOneID: this.props.userID,
+            userTwoID: notification["user1"],
+            sessionID: notification["id"]
+        }).then(()=> {
+            this.props.setSnackBar(`Session Added`, "success")
+            this.getNotifications()
+        })
     }
 
-    declineSessionRequest = () => {
-
+    declineSessionRequest = (notification) => {
+        Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people/decline`, {
+            sessionID: notification["id"]
+        }).then(()=> {
+            this.props.setSnackBar(`Session request declined`, "critical")
+            this.getNotifications()
+        })
     }
 
     renderNotification = (notification) => {
@@ -74,8 +106,8 @@ export default class Notifications extends React.Component {
                             <span className="notifications-name"> {notification.name} </span> sent you a friend request
                         </div>
                         <div className="notifications-buttons">
-                            <button className="square-button accept"> Accept </button>
-                            <button className="square-button decline"> Decline </button>
+                            <button className="square-button accept" onClick={() => this.acceptFriendRequest(notification)}> Accept </button>
+                            <button className="square-button decline" onClick={() => this.declineFriendRequest(notification)}> Decline </button>
                         </div>
                     </div>
                 )
@@ -86,8 +118,8 @@ export default class Notifications extends React.Component {
                             <span className="notifications-name"> {notification.name} </span> says that they were with you on {this.getDate(notification.timestamp)}
                         </div>
                         <div className="notifications-buttons">
-                            <button className="square-button accept"> Accept </button>
-                            <button className="square-button decline"> Decline </button>
+                            <button className="square-button accept" onClick={() => this.acceptSessionRequest(notification)}> Accept </button>
+                            <button className="square-button decline" onClick={() => this.declineSessionRequest(notification)}> Decline </button>
                         </div>
                     </div>
                 )
@@ -118,18 +150,27 @@ export default class Notifications extends React.Component {
     }
 
     render(){
-        return(
-            <div className="notifications">
-                <div className="notifications-content">
-                    <div className="main-header">
-                        <h2 className="main-title"> Notifications </h2>
-                    </div>
-                    <div className="notifications-list">
-                        {this.renderNotifications()}
-                    </div>
-
-                </div>
+        if (this.state.scene === "loading"){
+            return (
+            <div className="loading">
+                <h1> Loading... </h1>
             </div>
-        )
+            )
+        } else {
+            return(
+                <div className="notifications">
+                    <div className="notifications-content">
+                        <div className="main-header">
+                            <h2 className="main-title"> Notifications </h2>
+                        </div>
+                        <div className="notifications-list">
+                            {this.renderNotifications()}
+                        </div>
+    
+                    </div>
+                </div>
+            )
+        }
+        
     }
 }
