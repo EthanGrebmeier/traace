@@ -74,8 +74,8 @@ export default class FriendsList extends React.Component {
         this.setLoading()
         Axios.post('https://contact-tracing-server.herokuapp.com/api/users/connections/remove', 
         {
-            userID: this.props.userID,
-            user2: this.state.removedFriend["id"]
+            userOneID: this.props.userID,
+            userTwoID: this.state.removedFriend["id"]
         }
         ).then(() => {
             this.props.setSnackBar("Friend Removed", "success")
