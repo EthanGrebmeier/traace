@@ -20,7 +20,7 @@ let submitLogin = (event, email, password, setUserID, setSnackBar) => {
             console.log(res)
             let userID = res["data"]["userID"]
             if (userID){
-                setUserID()
+                setUserID(userID)
             } else {
                 setSnackBar(res["data"], "warning")
             }
