@@ -19,6 +19,7 @@ let submitLogin = (event, email, password, setUserID, setSnackBar) => {
         }).then((res) => {
             console.log(res)
             let userID = res["data"]["userID"]
+            console.log(userID)
             if (userID){
                 setUserID(userID)
             } else {
