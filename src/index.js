@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Traace from './Traace'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Traace />
   </React.StrictMode>,
   document.getElementById('root')
 );

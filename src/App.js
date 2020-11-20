@@ -1,6 +1,5 @@
 import React from 'react';
 import Axios from 'axios';
-import './App.scss';
 
 import close from './images/close.png'
  
@@ -34,7 +33,7 @@ export default class App extends React.Component{
   }
 
   getUser = () => {
-    Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/${2}`).then((res) => {
+    Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/${this.props.userID}`).then((res) => {
       console.log(res)
       this.setState({
         user: res["data"]["user"],
