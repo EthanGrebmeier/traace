@@ -23,40 +23,7 @@ export default class NewPeopleSession extends React.Component {
         Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/connections/${this.props.userID}`).then((res) => {
             console.log("SESSION FRIENDS")
             console.log(res)
-            let friends = [
-                {
-                    id: 3,
-                    name: "Kiley Brennan"
-                },
-                {
-                    id: 4,
-                    name: "Kieran Mckenna"
-                },
-                {
-                    id: 3,
-                    name: "Owen Grebmeier"
-                },
-                {
-                    id: 4,
-                    name: "Shawn White"
-                },
-                {
-                    id: 5,
-                    name: "Tony Grebmeier"
-                },
-                {
-                    id: 6,
-                    name: "Amber Grebmeier"
-                },
-                {
-                    id: 7,
-                    name: "Toby Fox"
-                },
-                {
-                    id: 8,
-                    name: "Oscar Bluth"
-                },
-            ]
+            let friends = res["data"]["connections"]
             let friendsValues = []
             for (let friend in friends){
                 friendsValues.push({
