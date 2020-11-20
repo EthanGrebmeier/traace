@@ -14,7 +14,7 @@ let submitLogin = (event, email, password, setUserID, setSnackBar) => {
         setSnackBar("Password must not be blank")
     } else {
         Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/login', {
-            email: email,
+            username: email,
             password: password
         }).then((res) => {
             console.log(res)
@@ -27,6 +27,7 @@ let submitLogin = (event, email, password, setUserID, setSnackBar) => {
             }
             
         }).catch(err => {
+            
             console.log(err)
         })
     }  

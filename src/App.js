@@ -8,7 +8,7 @@ import Status from './modules/Status/Status';
 import Buttons from './modules/Buttons/Buttons'
 import Sessions from './modules/Sessions/Sessions'
 import Notifications from './modules/Notifications/Notifications'
-import About from './modules/About/About'
+import More from './modules/More/More'
 import FriendsList from './modules/FriendsList/FriendsList'
 
 import SnackBar from './modules/SnackBar/SnackBar'
@@ -68,8 +68,8 @@ export default class App extends React.Component{
           userID={this.state.user.id}
           setSnackBar={this.setSnackBar}
         />
-      case ("about"):
-        return <About/>
+      case ("more"):
+        return <More handleLogout={this.props.handleLogout} />
       default:
         return(
           <Sessions userID={this.state.user["id"]}/>

@@ -16,13 +16,31 @@ export default class Traace extends React.Component{
         }
     }
 
+    componentDidMount(){
+        let userID = sessionStorage.getItem("userID")
+        if (userID){
+            this.setState({
+                userID: userID
+            })
+        }
+    }
+
     setUserID = (userID) => {
         userID = userID.toString()
-        console.log("TOP LEVEL")
-        console.log(userID)
+        sessionStorage.setItem("userID", userID)
+
         this.setState({
             userID: userID
         })
+    }
+
+    handleLogout = () => {
+        console.log("logout")
+        sessionStorage.clear()
+        this.setState({
+            userID: ""
+        })
+        
     }
     
 
@@ -33,7 +51,7 @@ export default class Traace extends React.Component{
             )
         } else {
             return (
-                <App userID={this.state.userID}/>
+                <App userID={this.state.userID} handleLogout={this.handleLogout}/>
             )
         }
         

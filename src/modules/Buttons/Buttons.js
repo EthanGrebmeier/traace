@@ -12,7 +12,7 @@ export default class Buttons extends React.Component {
             <div className="item-container container menu-buttons">
                 <Button name="Friends" id="friends" clickFunction={this.props.buttonPress}/>
                 <Button name="Notifications" id="notifications" clickFunction={this.props.buttonPress}/>
-                <Button name="About" id="about" clickFunction={this.props.buttonPress}/>
+                <Button name="More" id="more" clickFunction={this.props.buttonPress}/>
             </div>
         )
     }
