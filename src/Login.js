@@ -6,7 +6,7 @@ import './Login.scss'
 
 import leftArrow from './images/left-arrow.png'
 
-let submitLogin = (event, email, password, setUserID, setSnackBar) => {
+let submitLogin = (event, email, password, setUser, setSnackBar) => {
     event.preventDefault()
     if (email === ""){
         setSnackBar("Email must not be blank")
@@ -21,7 +21,7 @@ let submitLogin = (event, email, password, setUserID, setSnackBar) => {
             let userID = res["data"]["userID"]
             console.log(userID)
             if (userID){
-                setUserID(userID)
+                setUser(res["data"])
             } else {
                 setSnackBar(res["data"], "warning")
             }
@@ -42,7 +42,7 @@ export default function Login(props){
     return (
         <div className="login">
             <h1 className="login-header"> Log In </h1>
-            <form className="login-form" onSubmit={(event) => submitLogin(event, loginEmail, loginPassword, props.setUserID, props.setSnackBar)}>
+            <form className="login-form" onSubmit={(event) => submitLogin(event, loginEmail, loginPassword, props.setUser, props.setSnackBar)}>
                 <div className="login-form-row">
                     <label className="landing-input-container">
                         Email

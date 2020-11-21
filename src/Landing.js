@@ -108,14 +108,14 @@ export default class Landing extends React.Component{
             case "login":
                 return (
                     <div className="item-container container landing">
-                        <Login handleBack={this.handleBack} setSnackBar={this.setSnackBar} setUserID={this.props.setUserID} />
+                        <Login handleBack={this.handleBack} setSnackBar={this.setSnackBar} setUser={this.props.setUser} />
                         {this.renderSnackBar()}
                     </div>
                 )
             case "signUp":
                 return (
                     <div className="item-container container landing">
-                        <SignUp handleBack={this.handleBack} setSnackBar={this.setSnackBar} setUserID={this.props.setUserID} />
+                        <SignUp handleBack={this.handleBack} setSnackBar={this.setSnackBar} setUser={this.props.setUser} />
                         {this.renderSnackBar()}
                     </div>
                 )

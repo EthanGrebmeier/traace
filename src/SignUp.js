@@ -51,7 +51,7 @@ function checkForNumber(password){
     return false
 }
 
-function checkSignUpForm(event, firstName, lastName, email, password, confirmPassword, setUserID, setSnackBar){
+function checkSignUpForm(event, firstName, lastName, email, password, confirmPassword, setUser, setSnackBar){
     event.preventDefault()
     if (firstName === "" ){
         setSnackBar("First Name must not be empty")
@@ -74,11 +74,11 @@ function checkSignUpForm(event, firstName, lastName, email, password, confirmPas
     } else if (!checkForNumber(password)){
         setSnackBar("Password must have a number")
     } else {
-        registerRequest(firstName, lastName, email, password, setUserID, setSnackBar)
+        registerRequest(firstName, lastName, email, password, setUser, setSnackBar)
     }
 }
 
-let registerRequest = (firstName, lastName, email, password, setUserID, setSnackBar) => {
+let registerRequest = (firstName, lastName, email, password, setUser, setSnackBar) => {
     Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/register', {
             email: email,
             password: password,
@@ -89,7 +89,7 @@ let registerRequest = (firstName, lastName, email, password, setUserID, setSnack
             let userID = res["data"]["userID"]
             console.log(userID)
             if (userID){
-                setUserID(userID)
+                setUser(res["data"])
             } else {
                 setSnackBar(res["data"], "warning")
             }
@@ -111,7 +111,7 @@ export default function SignUp(props){
     return (
         <div className="login">
             <h1 className="login-header"> Sign Up </h1>
-            <form className="login-form" onSubmit={(event) => checkSignUpForm(event, signUpFirstName, signUpLastName, signUpEmail, signUpPassword, signUpPasswordConfirm, props.setUserID, props.setSnackBar)}>
+            <form className="login-form" onSubmit={(event) => checkSignUpForm(event, signUpFirstName, signUpLastName, signUpEmail, signUpPassword, signUpPasswordConfirm, props.setUser, props.setSnackBar)}>
                 <div className="login-form-row">
                     <label className="landing-input-container">
                         First Name

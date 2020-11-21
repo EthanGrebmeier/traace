@@ -1,7 +1,6 @@
 import React from 'react';
-import Axios from 'axios';
 import './Traace.scss';
-
+import Axios from 'axios'
 import Landing from './Landing'
 import App from './App'
 
@@ -12,25 +11,29 @@ export default class Traace extends React.Component{
         super(props)
         this.state = {
             userID: "",
-
         }
     }
 
     componentDidMount(){
         let userID = sessionStorage.getItem("userID")
-        if (userID){
+        let accessToken = sessionStorage.getItem("accessToken")
+
+        if (userID && accessToken){
             this.setState({
-                userID: userID
+                userID: userID,
             })
         }
     }
 
-    setUserID = (userID) => {
-        userID = userID.toString()
+    setUser = (user) => {
+        console.log(user)
+        let userID = user["userID"].toString()
+        let accessToken = user["accessToken"]
         sessionStorage.setItem("userID", userID)
-
+        sessionStorage.setItem("accessToken", accessToken)
+        
         this.setState({
-            userID: userID
+            userID: userID,
         })
     }
 
@@ -38,7 +41,8 @@ export default class Traace extends React.Component{
         console.log("logout")
         sessionStorage.clear()
         this.setState({
-            userID: ""
+            userID: "",
+            accessToken: ""
         })
         
     }
@@ -47,7 +51,7 @@ export default class Traace extends React.Component{
     render(){
         if (this.state.userID === ""){
             return (
-                <Landing setUserID={this.setUserID} />
+                <Landing setUser={this.setUser} />
             )
         } else {
             return (

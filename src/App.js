@@ -29,6 +29,8 @@ export default class App extends React.Component{
   }
 
   componentDidMount(){
+    Axios.defaults.headers.common['x-access-token'] = sessionStorage.getItem("accessToken")
+    console.log(sessionStorage.getItem("accessToken"))
     this.getUser()
   }
 
