@@ -36,34 +36,48 @@ export default class Notifications extends React.Component {
     }
 
     acceptFriendRequest = (notification) => {
-        Axios.post(`https://contact-tracing-server.herokuapp.com/api/users/connections`, {
-            userOneID: this.props.userID,
+        console.log(notification)
+        Axios.post(`https://contact-tracing-server.herokuapp.com/api/users/connections/accept`, {
+            userID: this.props.userID,
             userTwoID: notification["user1"]
-        }).then(()=> {
-            let first = notification["name"].split(" ")[0]
-            this.props.setSnackBar(`${first} is now your friend`, "success")
+        }).then((res)=> {
+            console.log(res)
+            if (res["data"] === "Connection established!"){
+                let first = notification["name"].split(" ")[0]
+                this.props.setSnackBar(`${first} is now your friend`, "success")
+            } else {
+                this.props.setSnackBar(res["data"], "warning")
+            }
+
             this.getNotifications()
+            
         })
     }
 
     declineFriendRequest = (notification) => {
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/users/connections/decline`, {
-            userOneID: this.props.userID,
+            userID: this.props.userID,
             userTwoID: notification["user1"]
         }).then(()=> {
             this.props.setSnackBar(`Friend request declined`, "critical")
             this.getNotifications()
+        }).catch(()=>{
+            this.props.setSnackBar(`Something went wrong`, "critical")
         })
     }
 
     acceptSessionRequest = (notification) => {
         console.log(notification)
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people/accept`, {
-            userOneID: this.props.userID,
-            userTwoID: notification["user1"],
+            userID: this.props.userID,
             sessionID: notification["id"]
-        }).then(()=> {
-            this.props.setSnackBar(`Session Added`, "success")
+        }).then((res)=> {
+            if (res["data"] === "Session Added"){
+                this.props.setSnackBar(`Session Added`, "success")
+            } else {
+                this.props.setSnackBar(res["data"], "warning")
+            }
+            
             this.getNotifications()
         })
     }

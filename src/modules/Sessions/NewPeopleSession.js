@@ -130,14 +130,14 @@ export default class NewPeopleSession extends React.Component {
         // ADD SESSION STUFF LATER
         console.log(this.state.friends[this.state.selectedFriendIndex]["id"])
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people`, {
-            userOneID: this.props.userID,
+            userID: this.props.userID,
             userTwoID: this.state.friends[this.state.selectedFriendIndex]["id"]
         }).then( res => {
             console.log(res)
             if (res.status === 200){
                 this.props.setSnackBar("Success!", "success")
             } else {
-                this.props.setSnackBar("Something Went Wrong", "critical")
+                this.props.setSnackBar("Something went wrong", "critical")
             }
         }).catch( (err) => {
             console.log(err)

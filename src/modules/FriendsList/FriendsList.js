@@ -75,7 +75,7 @@ export default class FriendsList extends React.Component {
         this.setLoading()
         Axios.post('https://contact-tracing-server.herokuapp.com/api/users/connections/remove', 
         {
-            userOneID: this.props.userID,
+            userID: this.props.userID,
             userTwoID: this.state.removedFriend["id"]
         }
         ).then(() => {
@@ -99,7 +99,7 @@ export default class FriendsList extends React.Component {
                 
             )
         } else if (this.state.scene === "newFriend"){
-            return <AddFriend changeScene={this.changeScene} />
+            return <AddFriend userID={this.props.userID} changeScene={this.changeScene} setSnackBar={this.props.setSnackBar} />
         } else if (this.state.scene === "removeFriend"){
             return (
             <div className="remove-confirm">

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Traace.scss';
-import Axios from 'axios'
+import axios from 'axios'
 import Landing from './Landing'
 import App from './App'
 
@@ -15,6 +15,7 @@ export default class Traace extends React.Component{
     }
 
     componentDidMount(){
+        axios.defaults.withCredentials = true
         let userID = sessionStorage.getItem("userID")
         let accessToken = sessionStorage.getItem("accessToken")
 
