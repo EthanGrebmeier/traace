@@ -29,8 +29,7 @@ export default class App extends React.Component{
   }
 
   componentDidMount(){
-    Axios.defaults.headers.common['x-access-token'] = sessionStorage.getItem("accessToken")
-    console.log(sessionStorage.getItem("accessToken"))
+    Axios.defaults.withCredentials = true
     this.getUser()
   }
 
@@ -41,10 +40,15 @@ export default class App extends React.Component{
         user: res["data"]["user"],
         loading: false,
       })
+    }).catch((err) => {
+      console.log("THERE WAS AN ERROR")
+      console.log(err)
+      this.props.handleLogout()
     })
   }
 
   buttonPress = (id) => {
+    console.log(id)
     this.setState({
       mainFrame: id
     })
@@ -102,11 +106,11 @@ export default class App extends React.Component{
         <div className="app-container">
           <div className="top-row">
             
-            <Profile buttonPress={this.buttonPress} name={this.state.user["name"]}/>
+            <Profile buttonPress={this.buttonPress} mainFrame={this.state.mainFrame} name={this.state.user["name"]}/>
   
             <Status status={this.state.user.status} userID={this.state.user.id}/>
   
-            <Buttons buttonPress={this.buttonPress}/>
+            <Buttons buttonPress={this.buttonPress} mainFrame={this.state.mainFrame} />
       
           </div>
   

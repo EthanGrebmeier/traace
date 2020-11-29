@@ -6,17 +6,19 @@ import './Login.scss'
 
 import leftArrow from './images/left-arrow.png'
 
-let submitLogin = (event, email, password, setUser, setSnackBar) => {
+let submitLogin = (event, email, password, setUser, setSnackBar, setLoginButtonText) => {
     event.preventDefault()
     if (email === ""){
         setSnackBar("Email must not be blank")
     } else if (password === "") {
         setSnackBar("Password must not be blank")
     } else {
+        setLoginButtonText("Loading...")
         Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/login', {
             username: email,
             password: password
         }).then((res) => {
+            setLoginButtonText("Log In")
             console.log("LOGIN:")
             console.log(res)
             let userID = res["data"]["userID"]
@@ -28,7 +30,8 @@ let submitLogin = (event, email, password, setUser, setSnackBar) => {
             }
             
         }).catch(err => {
-            
+            setLoginButtonText("Log In")
+            setSnackBar("Invalid Username or Password ", "warning")
             console.log(err)
         })
     }  
@@ -39,11 +42,12 @@ export default function Login(props){
 
     let [loginEmail, setLoginEmail] = React.useState("")
     let [loginPassword, setLoginPassword] = React.useState("")
+    let [loginButtonText, setLoginButtonText] = React.useState("Log In")
 
     return (
         <div className="login">
             <h1 className="login-header"> Log In </h1>
-            <form className="login-form" onSubmit={(event) => submitLogin(event, loginEmail, loginPassword, props.setUser, props.setSnackBar)}>
+            <form className="login-form" onSubmit={(event) => submitLogin(event, loginEmail, loginPassword, props.setUser, props.setSnackBar, setLoginButtonText)}>
                 <div className="login-form-row">
                     <label className="landing-input-container">
                         Email
@@ -57,7 +61,7 @@ export default function Login(props){
                     </label>
                 </div>
                 <button submit className="square-button yes submit-login-button">
-                    Log In
+                    {loginButtonText}
                 </button>
             </form>
             <button className="link-button"> Log In With Google </button>

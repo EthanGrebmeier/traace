@@ -125,7 +125,11 @@ export default class NewPeopleSession extends React.Component {
         timeOut.setMinutes(timeOutSplit[1])
         console.log(timeIn.toUTCString())
         console.log(timeOut.toUTCString())
-        
+
+        console.log("date")
+        console.log(this.state.date)
+
+   
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/locations/`, {
             userID: this.props.userID,
             locationID: this.state.location["place_id"],
@@ -136,6 +140,8 @@ export default class NewPeopleSession extends React.Component {
         }).then( res => {
             console.log(res)
             if (res.status === 200){
+                this.props.getSessions()
+                this.props.changeScene("sessions")
                 this.props.setSnackBar("Success!", "success")
             } else {
                 this.props.setSnackBar("Something Went Wrong", "critical")
@@ -144,7 +150,7 @@ export default class NewPeopleSession extends React.Component {
             console.log(err)
             this.props.setSnackBar("Something Went Wrong", "critical")
         } )
-        this.props.changeScene("sessions")
+        
         
     }
 

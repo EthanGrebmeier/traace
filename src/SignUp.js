@@ -51,7 +51,7 @@ function checkForNumber(password){
     return false
 }
 
-function checkSignUpForm(event, firstName, lastName, email, password, confirmPassword, setUser, setSnackBar){
+function checkSignUpForm(event, firstName, lastName, email, password, confirmPassword, setUser, setSnackBar, setLoginButtonText){
     event.preventDefault()
     if (firstName === "" ){
         setSnackBar("First Name must not be empty")
@@ -74,17 +74,19 @@ function checkSignUpForm(event, firstName, lastName, email, password, confirmPas
     } else if (!checkForNumber(password)){
         setSnackBar("Password must have a number")
     } else {
-        registerRequest(firstName, lastName, email, password, setUser, setSnackBar)
+        registerRequest(firstName, lastName, email, password, setUser, setSnackBar, setLoginButtonText)
     }
 }
 
-let registerRequest = (firstName, lastName, email, password, setUser, setSnackBar) => {
+let registerRequest = (firstName, lastName, email, password, setUser, setSnackBar, setLoginButtonText) => {
+    setLoginButtonText("Loading")
     Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/register', {
             email: email,
             password: password,
             firstName: firstName,
             lastName: lastName,
         }).then((res) => {
+            setLoginButtonText("Sign Up")
             console.log(res)
             let userID = res["data"]["userID"]
             console.log(userID)
@@ -95,6 +97,7 @@ let registerRequest = (firstName, lastName, email, password, setUser, setSnackBa
             }
             
         }).catch(err => {
+            setLoginButtonText("Sign Up")
             console.log(err)
         })
 }
@@ -107,11 +110,12 @@ export default function SignUp(props){
     let [signUpEmail, setsignUpEmail] = React.useState("")
     let [signUpPassword, setSignUpPassword] = React.useState("")
     let [signUpPasswordConfirm, setSignUpPasswordConfirm] = React.useState("")
+    let [loginButtonText, setLoginButtonText] = React.useState("Sign Up")
 
     return (
         <div className="login">
             <h1 className="login-header"> Sign Up </h1>
-            <form className="login-form" onSubmit={(event) => checkSignUpForm(event, signUpFirstName, signUpLastName, signUpEmail, signUpPassword, signUpPasswordConfirm, props.setUser, props.setSnackBar)}>
+            <form className="login-form" onSubmit={(event) => checkSignUpForm(event, signUpFirstName, signUpLastName, signUpEmail, signUpPassword, signUpPasswordConfirm, props.setUser, props.setSnackBar, setLoginButtonText)}>
                 <div className="login-form-row">
                     <label className="landing-input-container">
                         First Name
@@ -144,7 +148,7 @@ export default function SignUp(props){
                     </label>
                 </div>
                 <button submit className="square-button yes submit-login-button">
-                    Sign Up
+                    {loginButtonText}
                 </button>
             </form>
 

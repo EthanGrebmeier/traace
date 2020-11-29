@@ -71,6 +71,7 @@ export default class Sessions extends React.Component {
                     name="Location Name" 
                     userID={this.props.userID}
                     setSnackBar={this.props.setSnackBar}
+                    getSessions={this.getSessions}
                 />
                 <SessionsContainer 
                     header="People Seen" 
@@ -81,6 +82,7 @@ export default class Sessions extends React.Component {
                     name="Name"
                     userID={this.props.userID}
                     setSnackBar={this.props.setSnackBar}
+                    getSessions={this.getSessions}
                 />
             </div>
         )

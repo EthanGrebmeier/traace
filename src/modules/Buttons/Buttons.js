@@ -7,12 +7,15 @@ export default class Buttons extends React.Component {
         super(props)
         this.state = {}
     }
+    componentDidMount(){
+        console.log(this.props.mainFrame)
+    }
     render(){
         return(
             <div className="item-container container menu-buttons">
-                <Button name="Friends" id="friends" clickFunction={this.props.buttonPress}/>
-                <Button name="Notifications" id="notifications" clickFunction={this.props.buttonPress}/>
-                <Button name="More" id="more" clickFunction={this.props.buttonPress}/>
+                <Button name="Friends" id="friends" clickFunction={this.props.buttonPress} mainFrame={this.props.mainFrame}/>
+                <Button name="Notifications" id="notifications" clickFunction={this.props.buttonPress} mainFrame={this.props.mainFrame} />
+                <Button name="More" id="more" clickFunction={this.props.buttonPress} mainFrame={this.props.mainFrame} />
             </div>
         )
     }

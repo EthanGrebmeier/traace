@@ -31,10 +31,10 @@ export default class NewPeopleSession extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        if(this.state.inputCode.length == 9){
+        if(this.state.inputCode.length === 9){
             Axios.post('https://contact-tracing-server.herokuapp.com/api/users/connections', {
                 userID: this.props.userID,
-                friendCode: this.state.inputCode
+                friendCode: this.state.inputCode,
             }).then(( res ) => {
                 console.log(res)
                 if (res["data"] === "Request Sent"){

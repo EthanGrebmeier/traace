@@ -23,13 +23,14 @@ export default class SessionsContainer extends React.Component {
 
     setDate = (timestamp) => {
         let date = new Date(timestamp)
-        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+        return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getUTCFullYear()}`
     }
 
     renderSessions = () => {
         return(
             this.props.sessions
             .map((session) => {
+                console.log(session)
                 return(
                     <div className="table-row">
                             <p className="table-header-section name ">{session["name"]}</p>
@@ -47,12 +48,14 @@ export default class SessionsContainer extends React.Component {
                     changeScene={this.changeScene} 
                     userID={this.props.userID}
                     setSnackBar={this.props.setSnackBar}
+                    getSessions={this.props.getSessions}
                    />
         } else {
             return <NewPeopleSession 
                     changeScene={this.changeScene} 
                     userID={this.props.userID} 
                     setSnackBar={this.props.setSnackBar}
+                    getSessions={this.props.getSessions}
                    />
         }
     }

@@ -131,11 +131,14 @@ export default class NewPeopleSession extends React.Component {
         console.log(this.state.friends[this.state.selectedFriendIndex]["id"])
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people`, {
             userID: this.props.userID,
-            userTwoID: this.state.friends[this.state.selectedFriendIndex]["id"]
+            userTwoID: this.state.friends[this.state.selectedFriendIndex]["id"],
+            date: this.state.date,
         }).then( res => {
             console.log(res)
             if (res.status === 200){
+                this.props.getSessions()
                 this.props.setSnackBar("Success!", "success")
+                this.props.changeScene("sessions")
             } else {
                 this.props.setSnackBar("Something went wrong", "critical")
             }
@@ -143,7 +146,7 @@ export default class NewPeopleSession extends React.Component {
             console.log(err)
             this.props.setSnackBar("Something Went Wrong", "critical")
         } )
-        this.props.changeScene("sessions")
+        
         event.preventDefault()
     }
 

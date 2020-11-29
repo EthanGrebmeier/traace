@@ -74,9 +74,9 @@ export default class Profile extends React.Component {
                     </h1>
 
                     <div className="burger-buttons">
-                        <Button name="Friends" id="friends" clickFunction={this.props.buttonPress}/>
-                        <Button name="Notifications" id="notifications" clickFunction={this.props.buttonPress}/>
-                        <Button name="More" id="more" clickFunction={this.props.buttonPress}/>
+                        <Button name="Friends" id="friends" clickFunction={this.props.buttonPress} mainFrame={this.props.mainFrame} />
+                        <Button name="Notifications" id="notifications" clickFunction={this.props.buttonPress} mainFrame={this.props.mainFrame}/>
+                        <Button name="More" id="more" clickFunction={this.props.buttonPress} mainFrame={this.props.mainFrame}/>
                     </div>
 
                 </div>

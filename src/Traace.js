@@ -1,6 +1,6 @@
 import React from 'react';
 import './Traace.scss';
-import axios from 'axios'
+import Axios from 'axios'
 import Landing from './Landing'
 import App from './App'
 
@@ -15,13 +15,14 @@ export default class Traace extends React.Component{
     }
 
     componentDidMount(){
-        axios.defaults.withCredentials = true
-        let userID = sessionStorage.getItem("userID")
-        let accessToken = sessionStorage.getItem("accessToken")
-
-        if (userID && accessToken){
+        Axios.defaults.withCredentials = true
+        let storedUserID = localStorage.getItem("userID")
+        console.log("storedUserID")
+        console.log(storedUserID)
+        if (storedUserID){
+            console.log(true)
             this.setState({
-                userID: userID,
+                userID: storedUserID
             })
         }
     }
@@ -29,10 +30,7 @@ export default class Traace extends React.Component{
     setUser = (user) => {
         console.log(user)
         let userID = user["userID"].toString()
-        let accessToken = user["accessToken"]
-        sessionStorage.setItem("userID", userID)
-        sessionStorage.setItem("accessToken", accessToken)
-        
+        localStorage.setItem("userID", userID)
         this.setState({
             userID: userID,
         })
@@ -40,12 +38,13 @@ export default class Traace extends React.Component{
 
     handleLogout = () => {
         console.log("logout")
-        sessionStorage.clear()
-        this.setState({
-            userID: "",
-            accessToken: ""
-        })
+        localStorage.removeItem("userID")
         
+        this.setState({
+            userID: ""
+        })
+
+        Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/logout')
     }
     
 

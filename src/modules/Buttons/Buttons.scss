@@ -11,6 +11,19 @@
     background-color: #BD4F6C;
 }
 
+.selected{
+    font-weight: bolder;
+    animation-name: selected;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes selected {
+    from {background-color: #BD4F6C;}
+    to {background-color: #F0CF65;}
+}
+
 @media screen and (max-width: 1000px){
     .menu-buttons{
         display: none;
