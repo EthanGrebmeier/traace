@@ -24,6 +24,20 @@ export default class NewPeopleSession extends React.Component {
 
     }
 
+    getMinDate = () => {
+        let twoWeeks = new Date()
+        twoWeeks.setDate(twoWeeks.getDate() - 14)
+        console.log(`${twoWeeks.getUTCFullYear()}-${twoWeeks.getUTCMonth() + 1}-${twoWeeks.getUTCDate()}`)
+        return `${twoWeeks.getUTCFullYear()}-${twoWeeks.getUTCMonth() + 1}-${twoWeeks.getUTCDate()}`
+    }
+
+    getMaxDate = () => {
+        let today = new Date()
+        today.setDate(today.getDate())
+        console.log(`${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`)
+        return `${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`
+    }
+
     getFormattedTime = (time) => {
         let date = new Date()
         let timeSplit = time.split(":")
@@ -166,7 +180,7 @@ export default class NewPeopleSession extends React.Component {
 
                     <label className="new-session-input">
                         Date of Visit
-                        <input type="date" onChange={this.handleDateChange}>
+                        <input type="date" min={this.getMinDate()} max={this.getMaxDate()} onChange={this.handleDateChange}>
 
                         </input>
                     </label>
