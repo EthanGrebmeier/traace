@@ -59,11 +59,11 @@
 }
 
 .notifications-buttons .accept{
-    background-color: #DDEDAA;
+    background-color: var(--yes);
 }
 
 .notifications-buttons .decline{
-    background-color: #D7816A;
+    background-color:var(--no);
 }
 
 .notifications-row{

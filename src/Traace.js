@@ -1,11 +1,12 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import './Traace.scss';
 import Axios from 'axios'
 import Landing from './Landing'
 import App from './App'
 
 
-export default class Traace extends React.Component{
+class Traace extends React.Component{
 
     constructor(props){
         super(props)
@@ -16,13 +17,24 @@ export default class Traace extends React.Component{
 
     componentDidMount(){
         Axios.defaults.withCredentials = true
-        let storedUserID = localStorage.getItem("userID")
-        console.log("storedUserID")
-        console.log(storedUserID)
+        let storedUserID = localStorage.getItem("userID") 
+        let userID;
+        if (this.props) {
+            userID = this.props.match.params.userID
+            console.log("FROM GOOGLE")
+            console.log(userID)
+        }
+        
         if (storedUserID){
+            console.log("storedUserID")
+            console.log(storedUserID)
             console.log(true)
             this.setState({
                 userID: storedUserID
+            })
+        } else if (userID){
+            this.setState({
+                userID: userID
             })
         }
     }
@@ -61,3 +73,5 @@ export default class Traace extends React.Component{
         
     }
 }
+
+export default withRouter(Traace)

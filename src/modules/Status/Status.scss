@@ -47,11 +47,11 @@
 }
 
 .yes{
-    background-color: #DDEDAA;
+    background-color: var(--yes);
 }
 
 .no{
-    background-color: #BD4F6C;
+    background-color:var(--no);
 }
  
 @media screen and (max-width: 1000px){

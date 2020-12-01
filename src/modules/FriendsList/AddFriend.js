@@ -21,7 +21,7 @@ export default class NewPeopleSession extends React.Component {
     handleChange = (e) => {
         console.log(this.state.inputCode)
         this.setState({
-            inputCode: e.target.value
+            inputCode: e.target.value 
         })
     }
 
@@ -76,7 +76,7 @@ export default class NewPeopleSession extends React.Component {
                     </button>
                 </form>
 
-                <button className="form-back-button" onClick={this.handleBack}>
+                <button className="form-back-button friends-back-button" onClick={this.handleBack}>
                     <img src={leftArrow} alt="" className="back-arrow" />
                     BACK
                 </button>

@@ -44,6 +44,10 @@ export default function Login(props){
     let [loginPassword, setLoginPassword] = React.useState("")
     let [loginButtonText, setLoginButtonText] = React.useState("Log In")
 
+    let loginWithGoogle = () => {
+        window.open('http://contact-tracing-server.herokuapp.com/api/authenticate/login/google/',"_self")
+    }
+
     return (
         <div className="login">
             <h1 className="login-header"> Log In </h1>
@@ -64,7 +68,8 @@ export default function Login(props){
                     {loginButtonText}
                 </button>
             </form>
-            <button className="link-button"> Log In With Google </button>
+
+            <button className="link-button" onClick={() => loginWithGoogle()}> Log In With Google </button>
 
             <button className="back-button" onClick={props.handleBack}>
                     <img src={leftArrow} alt="" className="back-arrow" />

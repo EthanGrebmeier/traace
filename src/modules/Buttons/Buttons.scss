@@ -8,7 +8,7 @@
 
 .menu-button{
     width: 120px;
-    background-color: #BD4F6C;
+    background-color: var(--no);
 }
 
 .selected{
@@ -20,8 +20,8 @@
 }
 
 @keyframes selected {
-    from {background-color: #BD4F6C;}
-    to {background-color: #F0CF65;}
+    from {background-color:var(--no);}
+    to {background-color:var(--container-background);}
 }
 
 @media screen and (max-width: 1000px){

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Traace from './Traace'
+import AppRouter from './AppRouter'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Traace />
+    <AppRouter />
   </React.StrictMode>,
   document.getElementById('root')
 );
