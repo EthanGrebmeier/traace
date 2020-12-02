@@ -13,6 +13,7 @@ export default class SearchLocationInput extends React.Component {
 
 
   componentDidMount(){
+    console.log(process.env.googleAPI)
     this.loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${process.env.googleAPI || process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`,
       () => this.handleScriptLoad((query) => {this.setState({query: query})}, this.autoCompleteRef)
