@@ -50,13 +50,15 @@ class Traace extends React.Component{
 
     handleLogout = () => {
         console.log("logout")
-        localStorage.removeItem("userID")
         
+        localStorage.removeItem("userID")
+        Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/logout', {userID: this.state.userID})
+
         this.setState({
             userID: ""
         })
 
-        Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/logout')
+        
     }
     
 
