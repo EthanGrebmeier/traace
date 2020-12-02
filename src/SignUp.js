@@ -8,7 +8,6 @@ import Axios from 'axios';
 var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
 function isEmailValid(email) {
-  console.log(email)
     if (!email)
         return false;
 
@@ -98,7 +97,6 @@ let registerRequest = (firstName, lastName, email, password, setUser, setSnackBa
             
         }).catch(err => {
             setLoginButtonText("Sign Up")
-            console.log(err)
         })
 }
 

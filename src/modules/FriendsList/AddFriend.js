@@ -17,8 +17,9 @@ export default class NewPeopleSession extends React.Component {
 
     componentDidMount(){
         Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/connections/code/${this.props.userID}`).then( res => {
+            console.log(res)
             this.setState({
-                friendCode: res["friendCode"]
+                friendCode: res["data"]["code"]
             })
         })
     }
@@ -70,11 +71,11 @@ export default class NewPeopleSession extends React.Component {
                     OR
 
                     <label>
-                        Share your Friend Code: <p ref={(friendCode) => this.friendCode = friendCode}>{this.state.friendCode} </p>
+                        Share your Friend Code: <p ref={(friendCode) => this.friendCode = friendCode}> {this.state.friendCode} </p>
                         
                     </label>
 
-                    <button className="square-button accept-button" onClick={() => { let el = this.friendCode; el.select(); document.execCommand("copy"); this.props.setSnackBar("Copied to clipboard", "success") }} >
+                    <button className="square-button accept-button" onClick={(event) => { event.preventDefault(); navigator.clipboard.writeText(this.state.friendCode); this.props.setSnackBar("Copied to clipboard", "success") }} >
                         Copy
                     </button>
                 </form>
