@@ -52,8 +52,8 @@ export default function Login(props){
         <div className="login">
             <h1 className="login-header"> Log In </h1>
             <form className="login-form" onSubmit={(event) => submitLogin(event, loginEmail, loginPassword, props.setUser, props.setSnackBar, setLoginButtonText)}>
-                <div className="login-form-row">
-                    <label className="landing-input-container">
+                <div className="login-form-row login-inputs">
+                    <label className="landing-input-container ">
                         Email
                         <input type="text" className="landing-input" onChange={(e) => {setLoginEmail(e.target.value)}}>
                         </input>
@@ -69,7 +69,7 @@ export default function Login(props){
                 </button>
             </form>
 
-            <button className="link-button" onClick={() => loginWithGoogle()}> Log In With Google </button>
+            { /* <button className="link-button" onClick={() => loginWithGoogle()}> Log In With Google </button> */}
 
             <button className="back-button" onClick={props.handleBack}>
                     <img src={leftArrow} alt="" className="back-arrow" />

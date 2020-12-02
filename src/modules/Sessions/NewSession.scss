@@ -79,7 +79,12 @@
     background-color: transparent;
     border: none;
     font-family: 'Montserrat-Bold';
+}
 
+.session-back{
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
     
 }
 

@@ -3,6 +3,7 @@ import Axios from 'axios';
 
 import Login from './Login'
 import SignUp from './SignUp'
+import LearnMore from './LearnMore'
 
 import SnackBar from './modules/SnackBar/SnackBar'
 
@@ -97,7 +98,7 @@ export default class Landing extends React.Component{
                         <h1 className="welcome"> Welcome to</h1>
                         <h1 className="traace-logo"> Traace</h1>
                         <p className="welcome-description"> A Coronavirus contact tracing application</p>
-                        <button className="link-button"> Learn More </button>
+                        <button className="link-button" onClick={() => this.setScene("learnMore")}> Learn More </button>
                         <div className="login-button-bar">
                             <button className="square-button log-in-button yes" onClick={() => this.setScene("login")}> Log In </button>
                             <button className="square-button sign-up-button yes" onClick={() => this.setScene("signUp")}> Sign Up </button>
@@ -117,6 +118,12 @@ export default class Landing extends React.Component{
                     <div className="item-container container landing">
                         <SignUp handleBack={this.handleBack} setSnackBar={this.setSnackBar} setUser={this.props.setUser} />
                         {this.renderSnackBar()}
+                    </div>
+                )
+            case "learnMore": 
+                return (
+                    <div className="item-container container landing">
+                        <LearnMore handleBack={this.handleBack} />
                     </div>
                 )
             default: 

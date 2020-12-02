@@ -244,7 +244,7 @@ export default class NewPeopleSession extends React.Component {
 
                 {this.renderFormConfirm()}
 
-                <button className="form-back-button" onClick={this.handleBack}>
+                <button className="form-back-button session-back" onClick={this.handleBack}>
                     <img src={leftArrow} alt="" className="back-arrow" />
                     BACK
                 </button>

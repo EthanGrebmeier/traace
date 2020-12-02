@@ -152,7 +152,7 @@ export default function SignUp(props){
                 </button>
             </form>
 
-            <button className="link-button"> Register With Google </button>
+            { /* <button className="link-button"> Register With Google </button> */}
 
             <button className="back-button" onClick={props.handleBack}>
                     <img src={leftArrow} alt="" className="back-arrow" />
