@@ -81,7 +81,7 @@
 
     .toggle-burger-clicked{
         #burger-bar-one{
-            transform: translateX(2px) translateY(4.5px) rotate(45deg) ;
+            transform: translateX(2px) translateY(5.0px) rotate(45deg) ;
         }
         #burger-bar-two{
             opacity: 0;
@@ -94,7 +94,7 @@
     }
 
     .profile-content{
-        height: 146px;
+        height: 120px;
     }
 
     .burger-opened{

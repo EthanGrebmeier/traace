@@ -9,16 +9,17 @@
 }
 
 :root{
-    --background: #93B5C6;
-    --container-background: #F0CF65;
-    --yes: #DDEDAA;
-    --no: #BD4F6C;
+    
 
     --background: #BFACB5;
     --container-background: #E5D0CC;
     --yes: #BFACB5; 
     --no: #7F7B82;
-    
+
+    --background: #93B5C6;
+    --container-background: #F0CF65;
+    --yes: #DDEDAA;
+    --no: #BD4F6C;
 }
 
 body{
@@ -221,7 +222,7 @@ input{
         flex-direction: column;
     }
     .top-row{
-        height: 46%;
+        height: 44%;
         justify-content: space-evenly;
     }
     .bottom-row{
