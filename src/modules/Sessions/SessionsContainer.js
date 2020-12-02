@@ -30,7 +30,7 @@ export default class SessionsContainer extends React.Component {
         return(
             this.props.sessions
             .map((session) => {
-                console.log(session)
+
                 return(
                     <div className="table-row">
                             <p className="table-header-section name ">{session["name"]}</p>

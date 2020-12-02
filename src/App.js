@@ -35,20 +35,16 @@ export default class App extends React.Component{
 
   getUser = () => {
     Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/${this.props.userID}`).then((res) => {
-      console.log(res)
       this.setState({
         user: res["data"]["user"],
         loading: false,
       })
     }).catch((err) => {
-      console.log("THERE WAS AN ERROR")
-      console.log(err)
       this.props.handleLogout()
     })
   }
 
   buttonPress = (id) => {
-    console.log(id)
     this.setState({
       mainFrame: id
     })
@@ -57,7 +53,6 @@ export default class App extends React.Component{
   renderMainFrame = () => {
     switch (this.state.mainFrame){
       case ("sessions"):
-        console.log(this.state.user)
         return(
           <Sessions 
             userID={this.state.user["id"]}

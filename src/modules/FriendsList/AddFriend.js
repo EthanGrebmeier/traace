@@ -24,7 +24,6 @@ export default class NewPeopleSession extends React.Component {
     }
 
     handleChange = (e) => {
-        console.log(this.state.inputCode)
         this.setState({
             inputCode: e.target.value 
         })
@@ -41,7 +40,6 @@ export default class NewPeopleSession extends React.Component {
                 userID: this.props.userID,
                 friendCode: this.state.inputCode,
             }).then(( res ) => {
-                console.log(res)
                 if (res["data"] === "Request Sent"){
                     this.props.setSnackBar(res["data"], "success")
                 } else {

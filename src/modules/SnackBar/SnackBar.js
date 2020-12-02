@@ -20,7 +20,6 @@ const transitionStyles = {
 }
 
 export default function SnackBar(props){
-    console.log("snack")
     return (
         <Transition in={props.in} timeout={duration}>
             {state => (

@@ -8,7 +8,6 @@ export default class Buttons extends React.Component {
         this.state = {}
     }
     componentDidMount(){
-        console.log(this.props.mainFrame)
     }
     render(){
         return(

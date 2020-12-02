@@ -21,8 +21,6 @@ export default class NewPeopleSession extends React.Component {
 
     componentDidMount(){
         Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/connections/${this.props.userID}`).then((res) => {
-            console.log("SESSION FRIENDS")
-            console.log(res)
             let friends = res["data"]["connections"]
             let friendsValues = []
             for (let friend in friends){
@@ -31,7 +29,6 @@ export default class NewPeopleSession extends React.Component {
                     value: friend
                 })
             }
-            console.log(friendsValues)
 
             this.setState({
                 friends: friends,
@@ -43,14 +40,13 @@ export default class NewPeopleSession extends React.Component {
     getMinDate = () => {
         let twoWeeks = new Date()
         twoWeeks.setDate(twoWeeks.getDate() - 14)
-        console.log(`${twoWeeks.getUTCFullYear()}-${twoWeeks.getUTCMonth() + 1}-${twoWeeks.getUTCDate()}`)
         return `${twoWeeks.getUTCFullYear()}-${twoWeeks.getUTCMonth() + 1}-${twoWeeks.getUTCDate()}`
     }
 
     getMaxDate = () => {
         let today = new Date()
         today.setDate(today.getDate())
-        console.log(`${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`)
+
         return `${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`
     }
 
@@ -73,7 +69,6 @@ export default class NewPeopleSession extends React.Component {
                 }
             }
     
-            console.log(`Reccomendation: ${recommendation.name}`)
             if (recommendation === ""){
                 this.setState({
                     friendWholeString: event.target.value
@@ -90,7 +85,7 @@ export default class NewPeopleSession extends React.Component {
     }
 
     handleDateChange = (event) => {
-        console.log(event.target.value)
+
         this.setState({
             date: event.target.value
         })
@@ -142,13 +137,13 @@ export default class NewPeopleSession extends React.Component {
 
     handleConfirm = (event) => {
         // ADD SESSION STUFF LATER
-        console.log(this.state.friends[this.state.selectedFriendIndex]["id"])
+
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people`, {
             userID: this.props.userID,
             userTwoID: this.state.friends[this.state.selectedFriendIndex]["id"],
             date: this.state.date,
         }).then( res => {
-            console.log(res)
+
             if (res.status === 200){
                 this.props.getSessions()
                 this.props.setSnackBar("Success!", "success")
@@ -157,7 +152,6 @@ export default class NewPeopleSession extends React.Component {
                 this.props.setSnackBar("Something went wrong", "critical")
             }
         }).catch( (err) => {
-            console.log(err)
             this.props.setSnackBar("Something Went Wrong", "critical")
         } )
         

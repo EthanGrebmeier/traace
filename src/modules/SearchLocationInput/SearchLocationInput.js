@@ -54,7 +54,7 @@ export default class SearchLocationInput extends React.Component {
     let addressObject = this.autoComplete.getPlace();
     const query = addressObject.formatted_address;
     updateQuery(query);
-    console.log(addressObject);
+
     this.props.setLocation(addressObject)
   }
 

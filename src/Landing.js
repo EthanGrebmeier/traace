@@ -28,7 +28,6 @@ export default class Landing extends React.Component{
 
 
     setScene = (scene) => {
-        console.log(scene)
         switch (scene) {
             case "landing":
                 this.setLanding()
@@ -55,7 +54,6 @@ export default class Landing extends React.Component{
     }
 
     setLogin = () => {
-        console.log("hi")
         this.setState({
             scene: "login"
         })

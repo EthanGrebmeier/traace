@@ -19,7 +19,7 @@ export default class Sessions extends React.Component {
     componentDidMount(){
         
         if(this.props.userID){
-            console.log(this.props.userID)
+
             this.getSessions()
         }
         
@@ -27,7 +27,7 @@ export default class Sessions extends React.Component {
 
     openSection = (event, id) => {
         let container = event.target.id
-        console.log(container)
+
         let places = this.state.placesOpen
         let people = this.state.peopleOpen
 
@@ -51,7 +51,6 @@ export default class Sessions extends React.Component {
 
     getSessions = () => {
         axios.get(`https://contact-tracing-server.herokuapp.com/api/sessions/${this.props.userID}`).then((res) => {
-            console.log(res)
             this.setState({
                 placesData: res["data"]["Locations"],
                 peopleData: res["data"]["Users"]

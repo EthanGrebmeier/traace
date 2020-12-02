@@ -19,10 +19,7 @@ let submitLogin = (event, email, password, setUser, setSnackBar, setLoginButtonT
             password: password
         }).then((res) => {
             setLoginButtonText("Log In")
-            console.log("LOGIN:")
-            console.log(res)
             let userID = res["data"]["userID"]
-            console.log(userID)
             if (userID){
                 setUser(res["data"])
             } else {
@@ -32,7 +29,7 @@ let submitLogin = (event, email, password, setUser, setSnackBar, setLoginButtonT
         }).catch(err => {
             setLoginButtonText("Log In")
             setSnackBar("Invalid Username or Password ", "warning")
-            console.log(err)
+
         })
     }  
 }

@@ -22,7 +22,6 @@ export default class Notifications extends React.Component {
             scene: "loading"
         })
         axios.get(`https://contact-tracing-server.herokuapp.com/api/users/notifications/${this.props.userID}`).then((res) => {
-            console.log(res)
             this.setState({
                 notifications: res["data"]["notifications"],
                 scene: "notifications"
@@ -36,12 +35,10 @@ export default class Notifications extends React.Component {
     }
 
     acceptFriendRequest = (notification) => {
-        console.log(notification)
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/users/connections/accept`, {
             userID: this.props.userID,
             userTwoID: notification["user1"]
         }).then((res)=> {
-            console.log(res)
             if (res["data"] === "Connection established!"){
                 let first = notification["name"].split(" ")[0]
                 this.props.setSnackBar(`${first} is now your friend`, "success")
@@ -67,7 +64,6 @@ export default class Notifications extends React.Component {
     }
 
     acceptSessionRequest = (notification) => {
-        console.log(notification)
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people/accept`, {
             userID: this.props.userID,
             sessionID: notification["id"]
@@ -92,7 +88,6 @@ export default class Notifications extends React.Component {
     }
 
     renderNotification = (notification) => {
-        console.log(notification)
         switch (notification.notificationType) {
             case "peopleWarning":
                 if (notification.type === "positive") {

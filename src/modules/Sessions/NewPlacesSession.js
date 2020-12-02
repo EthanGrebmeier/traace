@@ -27,14 +27,12 @@ export default class NewPeopleSession extends React.Component {
     getMinDate = () => {
         let twoWeeks = new Date()
         twoWeeks.setDate(twoWeeks.getDate() - 14)
-        console.log(`${twoWeeks.getUTCFullYear()}-${twoWeeks.getUTCMonth() + 1}-${twoWeeks.getUTCDate()}`)
         return `${twoWeeks.getUTCFullYear()}-${twoWeeks.getUTCMonth() + 1}-${twoWeeks.getUTCDate()}`
     }
 
     getMaxDate = () => {
         let today = new Date()
         today.setDate(today.getDate())
-        console.log(`${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`)
         return `${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`
     }
 
@@ -78,7 +76,6 @@ export default class NewPeopleSession extends React.Component {
     }
 
     handleTimeChange = (event) => {
-        console.log(event.target.value)
         if (event.target.id === "time-in"){
             this.setState({
                 timeIn: event.target.value
@@ -92,7 +89,6 @@ export default class NewPeopleSession extends React.Component {
     } 
 
     handleDateChange = (event) => {
-        console.log(event.target.value)
         this.setState({
             date: event.target.value
         })
@@ -121,7 +117,7 @@ export default class NewPeopleSession extends React.Component {
         } else if(this.checkDateOrder()) {
             this.props.setSnackBar("Time out must come after time in", "warning")
         } else {
-            console.log(this.state)
+
             this.setState({confirm: true})
         }
     }
@@ -137,12 +133,6 @@ export default class NewPeopleSession extends React.Component {
         timeIn.setMinutes(timeInSplit[1])
         timeOut.setHours(timeOutSplit[0])
         timeOut.setMinutes(timeOutSplit[1])
-        console.log(timeIn.toUTCString())
-        console.log(timeOut.toUTCString())
-
-        console.log("date")
-        console.log(this.state.date)
-
    
         Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/locations/`, {
             userID: this.props.userID,
@@ -152,7 +142,6 @@ export default class NewPeopleSession extends React.Component {
             timeIn: this.state.timeIn,
             timeOut: this.state.timeOut
         }).then( res => {
-            console.log(res)
             if (res.status === 200){
                 this.props.getSessions()
                 this.props.changeScene("sessions")

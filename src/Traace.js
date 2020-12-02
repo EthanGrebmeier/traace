@@ -21,14 +21,11 @@ class Traace extends React.Component{
         let userID;
         if (this.props) {
             userID = this.props.match.params.userID
-            console.log("FROM GOOGLE")
-            console.log(userID)
+
         }
         
         if (storedUserID){
-            console.log("storedUserID")
-            console.log(storedUserID)
-            console.log(true)
+
             this.setState({
                 userID: storedUserID
             })
@@ -40,7 +37,7 @@ class Traace extends React.Component{
     }
 
     setUser = (user) => {
-        console.log(user)
+
         let userID = user["userID"].toString()
         localStorage.setItem("userID", userID)
         this.setState({
@@ -50,7 +47,7 @@ class Traace extends React.Component{
 
     handleLogout = () => {
         console.log("logout")
-        
+
         localStorage.removeItem("userID")
         Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/logout', {userID: this.state.userID})
 

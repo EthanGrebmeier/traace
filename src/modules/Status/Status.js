@@ -13,8 +13,7 @@ export default class Status extends React.Component {
     }
 
     handleChange = (e) => {
-        console.log(e.target.value)
-        console.log(this.state.status)
+
         this.setState({newStatus: e.target.value})
     }
 
@@ -48,7 +47,7 @@ export default class Status extends React.Component {
                 "status": this.state.newStatus,
                 "userID": this.props.userID
             }).then( (res) => {
-                console.log(res)
+
             })
         }
         this.setState({

@@ -35,7 +35,6 @@ export default class FriendsList extends React.Component {
     setFriendsList = () => {
         this.changeScene("loading")
         this.getFriends().then((res) => {
-            console.log(res)
             this.setState({
                 friends: res["data"]["connections"],
                 scene: "friendsList",
@@ -71,7 +70,6 @@ export default class FriendsList extends React.Component {
     }
 
     removeFriend = () => {
-        console.log(this.state.removedFriend)
         this.setLoading()
         Axios.post('https://contact-tracing-server.herokuapp.com/api/users/connections/remove', 
         {
