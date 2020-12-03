@@ -36,7 +36,9 @@ export default class NewPeopleSession extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        if(this.state.inputCode.length === 9){
+        if (this.state.inputCode === this.state.friendCode){
+            this.props.setSnackBar("You cannot send a request to yourself", "warning")
+        } else if(this.state.inputCode.length === 9){
             Axios.post('https://contact-tracing-server.herokuapp.com/api/users/connections', {
                 userID: this.props.userID,
                 friendCode: this.state.inputCode,
