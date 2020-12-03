@@ -72,9 +72,17 @@
     height: 20px;
 }
 
+.ios-warning{
+    display: none;
+}
+
 
 @media screen and (max-width: 1200px){
     .email-row{
+        width: 80%;
+    }
+    .ios-warning{
+        display: initial;
         width: 80%;
     }
 }
