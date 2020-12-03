@@ -61,6 +61,9 @@ export default function Login(props){
                         </input>
                     </label>
                 </div>
+                <p>
+                    Please be sure to disable "Prevent Cross-Site Tracking" in your Safari settings if you are logging in on iphone
+                </p>
                 <button submit className="square-button yes submit-login-button">
                     {loginButtonText}
                 </button>
