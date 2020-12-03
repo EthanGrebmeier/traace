@@ -14,7 +14,7 @@ let submitLogin = (event, email, password, setUser, setSnackBar, setLoginButtonT
         setSnackBar("Password must not be blank")
     } else {
         setLoginButtonText("Loading...")
-        Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/login', {
+        Axios.post(`${process.env.server_url || ""}api/authenticate/login`, {
             username: email,
             password: password
         }).then((res) => {
@@ -42,7 +42,7 @@ export default function Login(props){
     let [loginButtonText, setLoginButtonText] = React.useState("Log In")
 
     let loginWithGoogle = () => {
-        window.open('http://contact-tracing-server.herokuapp.com/api/authenticate/login/google/',"_self")
+        window.open(`${process.env.server_url || ""}api/authenticate/login/google/`,"_self")
     }
 
     return (
@@ -69,7 +69,7 @@ export default function Login(props){
                 </button>
             </form>
 
-            { /* <button className="link-button" onClick={() => loginWithGoogle()}> Log In With Google </button> */}
+            <button className="link-button" onClick={() => loginWithGoogle()}> Log In With Google </button>
 
             <button className="back-button" onClick={props.handleBack}>
                     <img src={leftArrow} alt="" className="back-arrow" />

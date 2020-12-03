@@ -50,7 +50,7 @@ export default class Sessions extends React.Component {
     }
 
     getSessions = () => {
-        axios.get(`https://contact-tracing-server.herokuapp.com/api/sessions/${this.props.userID}`).then((res) => {
+        axios.get(`${process.env.server_url || ""}api/sessions/${this.props.userID}`).then((res) => {
             this.setState({
                 placesData: res["data"]["Locations"],
                 peopleData: res["data"]["Users"]

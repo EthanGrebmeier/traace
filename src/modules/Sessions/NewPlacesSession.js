@@ -134,7 +134,7 @@ export default class NewPeopleSession extends React.Component {
         timeOut.setHours(timeOutSplit[0])
         timeOut.setMinutes(timeOutSplit[1])
    
-        Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/locations/`, {
+        Axios.post(`${process.env.server_url || ""}api/sessions/locations/`, {
             userID: this.props.userID,
             locationID: this.state.location["place_id"],
             locationName: this.state.location["name"],

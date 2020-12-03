@@ -21,7 +21,7 @@ export default class Notifications extends React.Component {
         this.setState({
             scene: "loading"
         })
-        axios.get(`https://contact-tracing-server.herokuapp.com/api/users/notifications/${this.props.userID}`).then((res) => {
+        axios.get(`${process.env.server_url || ""}api/users/notifications/${this.props.userID}`).then((res) => {
             this.setState({
                 notifications: res["data"]["notifications"],
                 scene: "notifications"
@@ -35,7 +35,7 @@ export default class Notifications extends React.Component {
     }
 
     acceptFriendRequest = (notification) => {
-        Axios.post(`https://contact-tracing-server.herokuapp.com/api/users/connections/accept`, {
+        Axios.post(`${process.env.server_url || ""}api/users/connections/accept`, {
             userID: this.props.userID,
             userTwoID: notification["user1"]
         }).then((res)=> {
@@ -52,7 +52,7 @@ export default class Notifications extends React.Component {
     }
 
     declineFriendRequest = (notification) => {
-        Axios.post(`https://contact-tracing-server.herokuapp.com/api/users/connections/decline`, {
+        Axios.post(`${process.env.server_url || ""}api/users/connections/decline`, {
             userID: this.props.userID,
             userTwoID: notification["user1"]
         }).then(()=> {
@@ -64,7 +64,7 @@ export default class Notifications extends React.Component {
     }
 
     acceptSessionRequest = (notification) => {
-        Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people/accept`, {
+        Axios.post(`${process.env.server_url || ""}api/sessions/people/accept`, {
             userID: this.props.userID,
             sessionID: notification["id"]
         }).then((res)=> {
@@ -79,7 +79,7 @@ export default class Notifications extends React.Component {
     }
 
     declineSessionRequest = (notification) => {
-        Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people/decline`, {
+        Axios.post(`${process.env.server_url || ""}api/sessions/people/decline`, {
             sessionID: notification["id"]
         }).then(()=> {
             this.props.setSnackBar(`Session request declined`, "critical")

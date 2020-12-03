@@ -79,7 +79,7 @@ function checkSignUpForm(event, firstName, lastName, email, password, confirmPas
 
 let registerRequest = (firstName, lastName, email, password, setUser, setSnackBar, setLoginButtonText) => {
     setLoginButtonText("Loading")
-    Axios.post('https://contact-tracing-server.herokuapp.com/api/authenticate/register', {
+    Axios.post(`${process.env.server_url || ""}api/authenticate/register`, {
             email: email,
             password: password,
             firstName: firstName,
@@ -150,7 +150,7 @@ export default function SignUp(props){
                 </button>
             </form>
 
-            { /* <button className="link-button"> Register With Google </button> */}
+            <button className="link-button"> Register With Google </button>
 
             <button className="back-button" onClick={props.handleBack}>
                     <img src={leftArrow} alt="" className="back-arrow" />

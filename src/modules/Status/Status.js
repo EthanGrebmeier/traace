@@ -43,7 +43,7 @@ export default class Status extends React.Component {
     triggerUpdate = () => {
         // POST STATUS UPDATE 
         if(this.state.newStatus !== this.props.status){
-            Axios.post('https://contact-tracing-server.herokuapp.com/api/users/status', {
+            Axios.post(`${process.env.server_url || ""}api/users/status`, {
                 "status": this.state.newStatus,
                 "userID": this.props.userID
             }).then( (res) => {

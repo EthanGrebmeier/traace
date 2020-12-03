@@ -20,7 +20,7 @@ export default class NewPeopleSession extends React.Component {
     }
 
     componentDidMount(){
-        Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/connections/${this.props.userID}`).then((res) => {
+        Axios.get(`${process.env.server_url || ""}api/users/connections/${this.props.userID}`).then((res) => {
             let friends = res["data"]["connections"]
             let friendsValues = []
             for (let friend in friends){
@@ -138,7 +138,7 @@ export default class NewPeopleSession extends React.Component {
     handleConfirm = (event) => {
         // ADD SESSION STUFF LATER
 
-        Axios.post(`https://contact-tracing-server.herokuapp.com/api/sessions/people`, {
+        Axios.post(`${process.env.server_url || ""}api/sessions/people`, {
             userID: this.props.userID,
             userTwoID: this.state.friends[this.state.selectedFriendIndex]["id"],
             date: this.state.date,

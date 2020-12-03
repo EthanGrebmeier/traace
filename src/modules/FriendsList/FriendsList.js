@@ -66,12 +66,12 @@ export default class FriendsList extends React.Component {
     }
 
     getFriends = () => {
-        return Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/connections/${this.props.userID}`)
+        return Axios.get(`${process.env.server_url || ""}api/users/connections/${this.props.userID}`)
     }
 
     removeFriend = () => {
         this.setLoading()
-        Axios.post('https://contact-tracing-server.herokuapp.com/api/users/connections/remove', 
+        Axios.post(`${process.env.server_url || ""}api/users/connections/remove`, 
         {
             userID: this.props.userID,
             userTwoID: this.state.removedFriend["id"]

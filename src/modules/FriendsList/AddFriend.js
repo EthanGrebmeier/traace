@@ -16,7 +16,7 @@ export default class NewPeopleSession extends React.Component {
     }
 
     componentDidMount(){
-        Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/connections/code/${this.props.userID}`).then( res => {
+        Axios.get(`${process.env.server_url || ""}api/users/connections/code/${this.props.userID}`).then( res => {
             console.log(res)
             this.setState({
                 friendCode: res["data"]["code"]
@@ -39,7 +39,7 @@ export default class NewPeopleSession extends React.Component {
         if (this.state.inputCode === this.state.friendCode){
             this.props.setSnackBar("You cannot send a request to yourself", "warning")
         } else if(this.state.inputCode.length === 9){
-            Axios.post('https://contact-tracing-server.herokuapp.com/api/users/connections', {
+            Axios.post(`${process.env.server_url || ""}api/users/connections`, {
                 userID: this.props.userID,
                 friendCode: this.state.inputCode,
             }).then(( res ) => {

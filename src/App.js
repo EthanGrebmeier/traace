@@ -34,7 +34,7 @@ export default class App extends React.Component{
   }
 
   getUser = () => {
-    Axios.get(`https://contact-tracing-server.herokuapp.com/api/users/${this.props.userID}`).then((res) => {
+    Axios.get(`${process.env.server_url || ""}api/users/${this.props.userID}`).then((res) => {
       this.setState({
         user: res["data"]["user"],
         loading: false,
