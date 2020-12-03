@@ -81,10 +81,7 @@
     .email-row{
         width: 80%;
     }
-    .ios-warning{
-        display: initial;
-        width: 80%;
-    }
+    
 }
 
 
@@ -92,6 +89,7 @@
     .login{
         height: 90%;
     }
+
     .login-form{
         height: 80%;
     }
@@ -104,5 +102,10 @@
     .landing-input-container{
         height: 35px;
         width: 100%;
+    }
+    .ios-warning{
+        text-align: center;
+        display: initial;
+        width: 80%;
     }
 }

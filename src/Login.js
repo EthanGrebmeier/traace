@@ -62,7 +62,7 @@ export default function Login(props){
                     </label>
                 </div>
                 <p className="ios-warning">
-                    Please be sure to disable "Prevent Cross-Site Tracking" in your Safari settings if you are logging in on iphone
+                    Please be sure to disable "Prevent Cross-Site Tracking" in your Safari settings if you are logging in on an Iphone
                 </p>
                 <button submit className="square-button yes submit-login-button">
                     {loginButtonText}
