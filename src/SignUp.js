@@ -110,6 +110,10 @@ export default function SignUp(props){
     let [signUpPasswordConfirm, setSignUpPasswordConfirm] = React.useState("")
     let [loginButtonText, setLoginButtonText] = React.useState("Sign Up")
 
+    let loginWithGoogle = () => {
+        window.open(`${process.env.server_url || ""}api/authenticate/login/google/`,"_self")
+    }
+
     return (
         <div className="login">
             <h1 className="login-header"> Sign Up </h1>
@@ -145,7 +149,7 @@ export default function SignUp(props){
                         </input>
                     </label>
                 </div>
-                <button submit className="square-button yes submit-login-button">
+                <button submit className="square-button yes submit-login-button" onClick={loginWithGoogle}>
                     {loginButtonText}
                 </button>
             </form>
